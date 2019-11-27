@@ -6,7 +6,30 @@
         xmlns:local="clr-namespace:VetClinic.Wpf"
         mc:Ignorable="d"
         Title="VetClinic" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    <DockPanel>
+        <Menu x:Name="menuMainWindow" DockPanel.Dock="Top">
+            <MenuItem x:Name="menuItemFile" Header="_File">
+                <MenuItem x:Name="menuItemLoad" Header="_Load" Click="MenuItemLoad_Click" />
+                <MenuItem x:Name="menuItemSave" Header="_Save" Click="MenuItemSave_Click" />
+                <Separator />
+                <MenuItem x:Name="menuItemClear" Header="_Clear" Click="MenuItemClear_Click" />
+            </MenuItem>
+        </Menu>
+        <Grid x:Name="gridMainBody">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid x:Name="gridControlBar">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Button x:Name="buttonAddPatient" Grid.Column="3" Content="Add patient..." HorizontalAlignment="Center" VerticalAlignment="Center" Width="125" Click="ButtonAddPatient_Click"/>
+            </Grid>
+            <DataGrid x:Name="dataGridSchedule" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch"/>
+        </Grid>
+    </DockPanel>
 </Window>

@@ -24,5 +24,29 @@ namespace VetClinic.Wpf
         {
             InitializeComponent();
         }
+
+        #region Event Handlers
+
+        private void MenuItemLoad_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuItemSave_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuItemClear_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonAddPatient_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        #endregion Event Handlers
     }
 }
