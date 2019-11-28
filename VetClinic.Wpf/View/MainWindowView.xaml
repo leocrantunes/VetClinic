@@ -36,7 +36,20 @@
                     <ColumnDefinition Width="200"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <ListBox HorizontalAlignment="Stretch" Margin="10" Grid.Column="0" VerticalAlignment="Stretch" />
+                <ListBox HorizontalAlignment="Stretch" Margin="10" Grid.Column="0" VerticalAlignment="Stretch" ItemTemplate="{DynamicResource CustomerList}" ItemsSource="{Binding VetClinic.Patients}">
+                    <ListBox.Resources>
+                        <DataTemplate x:Key="CustomerList">
+                            <Grid x:Name="gridCustomerList" Margin="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <TextBox Text="{Binding Path=Name}" />
+                                <TextBox Text="{Binding Path=Breed}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.Resources>
+                </ListBox>
                 <DataGrid x:Name="dataGridSchedule" HorizontalAlignment="Stretch" Margin="10" Grid.Column="1" VerticalAlignment="Stretch" ItemsSource="{Binding VetClinic.Patients}"/>
             </Grid>
         </Grid>
