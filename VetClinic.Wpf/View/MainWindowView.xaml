@@ -14,6 +14,9 @@
                 <Separator />
                 <MenuItem x:Name="menuItemClear" Header="_Clear" Click="MenuItemClear_Click" />
             </MenuItem>
+            <MenuItem Header="_Tools">
+                <MenuItem x:Name="menuItemRegisterPatient" Header="_Register..." Click="ButtonAddPatient_Click" />
+            </MenuItem>
         </Menu>
         <Grid x:Name="gridMainBody">
             <Grid.RowDefinitions>
@@ -27,7 +30,6 @@
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <Button x:Name="buttonAddPatient" Grid.Column="3" Content="Add patient..." HorizontalAlignment="Center" VerticalAlignment="Center" Width="125" Click="ButtonAddPatient_Click"/>
             </Grid>
             <DataGrid x:Name="dataGridSchedule" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" ItemsSource="{Binding VetClinic.Patients}"/>
         </Grid>
