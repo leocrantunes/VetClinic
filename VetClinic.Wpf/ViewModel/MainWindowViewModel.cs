@@ -14,7 +14,7 @@ namespace VetClinic.Wpf.ViewModel
             VetClinic = new Clinic();
 
             // load previous data
-            // test
+            // test li
             ReadXmlData();
         }
 
