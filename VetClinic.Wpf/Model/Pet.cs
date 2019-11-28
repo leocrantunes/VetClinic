@@ -85,8 +85,8 @@ namespace VetClinic.Wpf.Model
             }
         }
 
-        private TypeOfPet? _type;
-        public TypeOfPet? Type
+        private PetType? _type;
+        public PetType? Type
         {
             get { return _type; }
             set

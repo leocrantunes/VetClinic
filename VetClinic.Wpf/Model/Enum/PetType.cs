@@ -1,6 +1,6 @@
 ﻿namespace VetClinic.Wpf.Model.Enum
 {
-    public enum TypeOfPet
+    public enum PetType
     {
         Dog,
         Cat
