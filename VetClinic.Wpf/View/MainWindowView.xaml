@@ -31,7 +31,8 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
             </Grid>
-            <DataGrid x:Name="dataGridSchedule" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" ItemsSource="{Binding VetClinic.Patients}"/>
+            <DataGrid x:Name="dataGridSchedule" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" ItemsSource="{Binding VetClinic.Patients}" Margin="178,0,0.333,0.333"/>
+            <ListBox HorizontalAlignment="Left" Height="302" Margin="30,0,0,0" Grid.Row="1" VerticalAlignment="Top" Width="100"/>
         </Grid>
     </DockPanel>
 </Window>
