@@ -1,9 +1,9 @@
-﻿<Window x:Class="VetClinic.Wpf.MainWindowView"
+﻿<Window x:Class="VetClinic.Wpf.View.MainWindowView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:VetClinic.Wpf"
+        xmlns:local="clr-namespace:VetClinic.Wpf.View"
         mc:Ignorable="d"
         Title="VetClinic" Height="450" Width="800">
     <DockPanel>
@@ -29,7 +29,7 @@
                 </Grid.ColumnDefinitions>
                 <Button x:Name="buttonAddPatient" Grid.Column="3" Content="Add patient..." HorizontalAlignment="Center" VerticalAlignment="Center" Width="125" Click="ButtonAddPatient_Click"/>
             </Grid>
-            <DataGrid x:Name="dataGridSchedule" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch"/>
+            <DataGrid x:Name="dataGridSchedule" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" ItemsSource="{Binding VetClinic.Patients}"/>
         </Grid>
     </DockPanel>
 </Window>

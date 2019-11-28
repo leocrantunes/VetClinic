@@ -55,7 +55,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainWindowView.xaml">
+    <Compile Include="Model\Clinic.cs" />
+    <Compile Include="ViewModel\PetDialogViewModel.cs" />
+    <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="View\PatientDialogView.xaml.cs">
+      <DependentUpon>PatientDialogView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="View\MainWindowView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -63,10 +69,19 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindowView.xaml.cs">
+    <Compile Include="Core\BaseNotifyPropertyChanged.cs" />
+    <Compile Include="Model\Enum\Gender.cs" />
+    <Compile Include="Model\Enum\TypeOfPet.cs" />
+    <Compile Include="Model\Pet.cs" />
+    <Compile Include="Model\Person.cs" />
+    <Compile Include="View\MainWindowView.xaml.cs">
       <DependentUpon>MainWindowView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\PatientDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

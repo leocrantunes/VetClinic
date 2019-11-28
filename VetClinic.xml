@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Clinic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Patients>
+    <Pet>
+      <Name>Flick</Name>
+      <Breed>Sheppard</Breed>
+      <Age>8</Age>
+      <Weight>10</Weight>
+      <Length>4</Length>
+      <Height>2</Height>
+      <Type>Dog</Type>
+      <Gender>Male</Gender>
+      <Owner>
+        <FirstName>John</FirstName>
+        <LastName>Smith</LastName>
+        <Address>300 Red Avenue</Address>
+        <City>Kitchener</City>
+        <Province>Ontario</Province>
+        <PostalCode>N3V 1G4</PostalCode>
+        <Phone>2269998888</Phone>
+        <Email>test@test.com</Email>
+      </Owner>
+    </Pet>
+  </Patients>
+</Clinic>

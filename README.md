@@ -1,2 +1,2 @@
 # VetClinic
-Example of WPF application for a Veterinarian Clinic.
+Example of WPF application for a Veterinary Clinic.
