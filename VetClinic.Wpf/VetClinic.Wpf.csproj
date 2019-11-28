@@ -56,7 +56,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\Clinic.cs" />
-    <Compile Include="ViewModel\PetDialogViewModel.cs" />
+    <Compile Include="Model\Enum\ServiceType.cs" />
+    <Compile Include="Model\Enum\AppointmentPlace.cs" />
+    <Compile Include="Model\Schedule.cs" />
+    <Compile Include="Model\Appointment.cs" />
+    <Compile Include="ViewModel\AppointmentDialogViewModel.cs" />
+    <Compile Include="ViewModel\PatientDialogViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="View\PatientDialogView.xaml.cs">
       <DependentUpon>PatientDialogView.xaml</DependentUpon>
@@ -71,7 +76,7 @@
     </Compile>
     <Compile Include="Core\BaseNotifyPropertyChanged.cs" />
     <Compile Include="Model\Enum\Gender.cs" />
-    <Compile Include="Model\Enum\TypeOfPet.cs" />
+    <Compile Include="Model\Enum\PetType.cs" />
     <Compile Include="Model\Pet.cs" />
     <Compile Include="Model\Person.cs" />
     <Compile Include="View\MainWindowView.xaml.cs">
