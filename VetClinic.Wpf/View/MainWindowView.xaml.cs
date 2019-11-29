@@ -94,6 +94,31 @@ namespace VetClinic.Wpf.View
             }
         }
 
+        private void ButtonMakeAppointment_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var dlg = new AppointmentDialogView(ViewModel.VetClinic.Patients)
+                {
+                    Owner = this
+                };
+
+                dlg.ShowDialog();
+
+                if (dlg.DialogResult == true)
+                {
+                    //add to appiontmentlist
+                    //ViewModel.VetClinic.Schedule
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Unexpected error occurred during making appointment");
+            }
+        }
+
+
+
         #endregion Event Handlers
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)

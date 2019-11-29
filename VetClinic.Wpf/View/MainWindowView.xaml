@@ -16,6 +16,7 @@
             </MenuItem>
             <MenuItem Header="_Tools">
                 <MenuItem x:Name="menuItemRegisterPatient" Header="_Register..." Click="ButtonAddPatient_Click" />
+                <MenuItem x:Name="menuItemMakeAppointment" Header="_Appointment..." Click="ButtonMakeAppointment_Click" />
             </MenuItem>
         </Menu>
         <Grid x:Name="gridMainBody">
@@ -36,9 +37,9 @@
                     <ColumnDefinition Width="200"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <ListBox HorizontalAlignment="Stretch" Margin="10" Grid.Column="0" VerticalAlignment="Stretch" ItemTemplate="{DynamicResource CustomerList}" ItemsSource="{Binding VetClinic.Patients}">
+                <ListBox HorizontalAlignment="Stretch" Margin="10" Grid.Column="0" VerticalAlignment="Stretch" ItemTemplate="{DynamicResource PatientsList}" ItemsSource="{Binding VetClinic.Patients}">
                     <ListBox.Resources>
-                        <DataTemplate x:Key="CustomerList">
+                        <DataTemplate x:Key="PatientsList">
                             <Grid x:Name="gridCustomerList" Margin="2">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition />
