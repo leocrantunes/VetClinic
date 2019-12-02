@@ -130,5 +130,10 @@ namespace VetClinic.Wpf.View
         {
 
         }
+
+        private void ListBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
