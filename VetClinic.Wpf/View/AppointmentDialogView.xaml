@@ -39,10 +39,10 @@
         <Label Grid.Row="4" Grid.Column="0" Content="Time:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
         <ComboBox Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" Height="23" VerticalAlignment="Center" Width="200" />
         <Label Grid.Row="5" Grid.Column="0" Content="Type of Service:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
-        <ComboBox Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" Height="23" VerticalAlignment="Center" Width="200" ItemsSource="{Binding TypeofService}" />
+        <ComboBox Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" Height="23" VerticalAlignment="Center" Width="200" ItemsSource="{Binding ServiceTypes}" />
         <Label Grid.Row="6" Grid.Column="0" Content="Place" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
-        <ComboBox Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center" Height="23" VerticalAlignment="Center" Width="200" ItemsSource="{Binding Place}" />
-        <Button Grid.Row="11" Grid.Column="1" x:Name="btnOk" Content="OK" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="23" />
-        <Button Grid.Row="11" Grid.Column="0" x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="23" />
+        <ComboBox Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center" Height="23" VerticalAlignment="Center" Width="200" ItemsSource="{Binding Places}" />
+        <Button Grid.Row="11" Grid.Column="1" x:Name="btnOk" Content="OK" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="23" Click="BtnCancel_Click" />
+        <Button Grid.Row="11" Grid.Column="0" x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="23" Click="BtnOk_Click" />
     </Grid>
 </Window>

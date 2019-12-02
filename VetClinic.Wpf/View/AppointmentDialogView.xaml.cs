@@ -64,10 +64,5 @@ namespace VetClinic.Wpf.View
         {
             DialogResult = false;
         }
-
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
     }
 }
