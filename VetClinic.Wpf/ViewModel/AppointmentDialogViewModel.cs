@@ -1,6 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Linq;
 using VetClinic.Wpf.Core;
 using VetClinic.Wpf.Model;
+using VetClinic.Wpf.Model.Enum;
 
 namespace VetClinic.Wpf.ViewModel
 {
@@ -11,6 +14,9 @@ namespace VetClinic.Wpf.ViewModel
             Message = string.Empty;
             Schedule = new Schedule();
             RegisteredPets = registeredPets;
+
+            Places = new ObservableCollection<AppointmentPlace>(Enum.GetValues(typeof(AppointmentPlace)).Cast<AppointmentPlace>());
+            ServiceTypes = new ObservableCollection<ServiceType>(Enum.GetValues(typeof(ServiceType)).Cast<ServiceType>());
         }
 
         private string _message;
@@ -36,6 +42,10 @@ namespace VetClinic.Wpf.ViewModel
         }
 
         public ObservableCollection<Pet> RegisteredPets { get; set; }
+
+        public ObservableCollection<AppointmentPlace> Places { get; set; }
+
+        public ObservableCollection<ServiceType> ServiceTypes { get; set; }
 
         public bool CheckFields()
         {

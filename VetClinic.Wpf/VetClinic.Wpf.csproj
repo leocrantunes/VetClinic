@@ -63,9 +63,16 @@
     <Compile Include="ViewModel\AppointmentDialogViewModel.cs" />
     <Compile Include="ViewModel\PatientDialogViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="View\AppointmentDialogView.xaml.cs">
+      <DependentUpon>AppointmentDialogView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PatientDialogView.xaml.cs">
       <DependentUpon>PatientDialogView.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\AppointmentDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainWindowView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
