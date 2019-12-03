@@ -7,10 +7,9 @@ namespace VetClinic.Wpf.Model
     {
         public Clinic()
         {
+            Schedule = new Schedule();
             Patients = new ObservableCollection<Pet>();
         }
-
-        public ObservableCollection<Pet> Patients { get; set; }
 
         private Schedule _schedule;
         public Schedule Schedule
@@ -23,9 +22,12 @@ namespace VetClinic.Wpf.Model
             }
         }
 
+        public ObservableCollection<Pet> Patients { get; set; }
+
         public void Clear()
         {
             Patients?.Clear();
+            Schedule?.Appointments?.Clear();
         }
     }
 }

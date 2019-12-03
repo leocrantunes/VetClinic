@@ -85,7 +85,7 @@ namespace VetClinic.Wpf.View
 
                 if (dlg.DialogResult == true)
                 {
-                    ViewModel.VetClinic.Patients.Add(dlg.ViewModel.Patient);
+                    ViewModel.AddPatient(dlg.ViewModel.Patient);
                 }
             }
             catch (Exception)
@@ -98,7 +98,7 @@ namespace VetClinic.Wpf.View
         {
             try
             {
-                var dlg = new AppointmentDialogView(ViewModel.VetClinic.Patients)
+                var dlg = new AppointmentDialogView(ViewModel.VetClinic.Schedule, ViewModel.VetClinic.Patients)
                 {
                     Owner = this
                 };
@@ -107,8 +107,7 @@ namespace VetClinic.Wpf.View
 
                 if (dlg.DialogResult == true)
                 {
-                    //add to appiontmentlist
-                    //ViewModel.VetClinic.Schedule
+                    ViewModel.AddAppointment(dlg.ViewModel.Appointment);
                 }
             }
             catch (Exception)
@@ -116,19 +115,7 @@ namespace VetClinic.Wpf.View
                 MessageBox.Show("Unexpected error occurred during making appointment");
             }
         }
-
-
-
+        
         #endregion Event Handlers
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
     }
 }

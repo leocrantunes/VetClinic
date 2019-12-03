@@ -16,7 +16,7 @@ namespace VetClinic.Wpf.ViewModel
             RegisteredPets = registeredPets;
 
             Genders = new ObservableCollection<Gender>(Enum.GetValues(typeof(Gender)).Cast<Gender>());
-            TypesOfPet = new ObservableCollection<PetType>(Enum.GetValues(typeof(PetType)).Cast<PetType>());
+            PetTypes = new ObservableCollection<PetType>(Enum.GetValues(typeof(PetType)).Cast<PetType>());
         }
 
         private string _message;
@@ -45,7 +45,7 @@ namespace VetClinic.Wpf.ViewModel
 
         public ObservableCollection<Gender> Genders { get; set; }
 
-        public ObservableCollection<PetType> TypesOfPet { get; set; }
+        public ObservableCollection<PetType> PetTypes { get; set; }
 
         public bool CheckFields()
         {
