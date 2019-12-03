@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Xml.Serialization;
 using VetClinic.Wpf.Core;
 using VetClinic.Wpf.Model.Enum;
 
@@ -9,11 +12,21 @@ namespace VetClinic.Wpf.Model
         public Appointment()
         {
             Patient = new Pet();
-            DateTime = DateTime.Today;
-            AppointmentPlace = null;
+            Date = DateTime.Today;
+            Time = TimeSpan.FromHours(12);
+            Place = null;
             ServiceType = null;
         }
-        
+
+        public Appointment(Appointment appointment, Pet patient)
+        {
+            Patient = patient;
+            Date = appointment.Date;
+            Time = appointment.Time;
+            Place = appointment.Place;
+            ServiceType = appointment.ServiceType;
+        }
+
         private Pet _patient;
         public Pet Patient
         {
@@ -25,25 +38,45 @@ namespace VetClinic.Wpf.Model
             }
         }
 
-        private DateTime _dateTime;
-        public DateTime DateTime
+        private DateTime _date;
+        public DateTime Date
         {
-            get { return _dateTime; }
+            get { return _date; }
             set
             {
-                _dateTime = value;
-                OnPropertyChanged(nameof(DateTime));
+                _date = value;
+                OnPropertyChanged(nameof(Date));
+            }
+        }
+
+        private TimeSpan _time;
+        [XmlIgnore]
+        public TimeSpan Time
+        {
+            get { return _time; }
+            set
+            {
+                _time = value;
+                OnPropertyChanged(nameof(Time));
             }
         }
         
+        // Pretend property for serialization
+        [XmlElement("Time")]
+        public long TimeTicks
+        {
+            get { return _time.Ticks; }
+            set { _time = new TimeSpan(value); }
+        }
+
         private AppointmentPlace? _appointmentPlace;
-        public AppointmentPlace? AppointmentPlace
+        public AppointmentPlace? Place
         {
             get { return _appointmentPlace; }
             set
             {
                 _appointmentPlace = value;
-                OnPropertyChanged(nameof(AppointmentPlace));
+                OnPropertyChanged(nameof(Place));
             }
         }
 

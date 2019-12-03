@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using VetClinic.Wpf.Model;
 using VetClinic.Wpf.ViewModel;
 
 namespace VetClinic.Wpf.View
@@ -85,7 +86,7 @@ namespace VetClinic.Wpf.View
 
                 if (dlg.DialogResult == true)
                 {
-                    ViewModel.VetClinic.Patients.Add(dlg.ViewModel.Patient);
+                    ViewModel.AddPatient(dlg.ViewModel.Patient);
                 }
             }
             catch (Exception)
@@ -98,7 +99,7 @@ namespace VetClinic.Wpf.View
         {
             try
             {
-                var dlg = new AppointmentDialogView(ViewModel.VetClinic.Patients)
+                var dlg = new AppointmentDialogView(ViewModel.VetClinic.Schedule, ViewModel.VetClinic.Patients)
                 {
                     Owner = this
                 };
@@ -107,8 +108,7 @@ namespace VetClinic.Wpf.View
 
                 if (dlg.DialogResult == true)
                 {
-                    //add to appiontmentlist
-                    //ViewModel.VetClinic.Schedule
+                    ViewModel.AddAppointment(dlg.ViewModel.Appointment);
                 }
             }
             catch (Exception)
@@ -117,23 +117,50 @@ namespace VetClinic.Wpf.View
             }
         }
 
+        private void BtnEditAppointment_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var button = sender as Button;
+                var appointment = button.DataContext as Appointment;
+                
+                var dlg = new AppointmentDialogView(ViewModel.VetClinic.Schedule, ViewModel.VetClinic.Patients, appointment)
+                {
+                    Owner = this
+                };
 
+                dlg.ShowDialog();
+
+                if (dlg.DialogResult == true)
+                {
+                    ViewModel.EditAppointment(appointment, dlg.ViewModel.Appointment);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Unexpected error occurred during editing appointment");
+            }
+        }
+
+        private void BtnDeleteAppointment_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var button = sender as Button;
+                var appointment = button.DataContext as Appointment;
+
+                MessageBoxResult messageBoxResult = MessageBox.Show("Are you sure?", "Delete Confirmation", MessageBoxButton.YesNo);
+                if (messageBoxResult == MessageBoxResult.Yes)
+                {
+                    ViewModel.RemoveAppointment(appointment);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Unexpected error occurred during deleting appointment");
+            }
+        }
 
         #endregion Event Handlers
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void ListBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
     }
 }

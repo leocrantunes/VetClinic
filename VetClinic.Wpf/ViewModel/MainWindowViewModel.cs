@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Xml.Serialization;
 using VetClinic.Wpf.Core;
 using VetClinic.Wpf.Model;
@@ -7,7 +8,7 @@ namespace VetClinic.Wpf.ViewModel
 {
     public class MainWindowViewModel : BaseNotifyPropertyChanged
     {
-        private string _xmlFileName = "VetClinic.xml";
+        private readonly string _xmlFileName = "VetClinic.xml";
 
         public MainWindowViewModel()
         {
@@ -59,6 +60,46 @@ namespace VetClinic.Wpf.ViewModel
         public void ClearAllData()
         {
             VetClinic?.Clear();
+        }
+
+        /// <summary>
+        /// Add patient to VetClinic object
+        /// </summary>
+        /// <param name="patient"></param>
+        public void AddPatient(Pet patient)
+        {
+            patient.Id = Guid.NewGuid().ToString("n");
+            VetClinic.Patients.Add(patient);
+        }
+
+        /// <summary>
+        /// Add appointment to schedule
+        /// </summary>
+        /// <param name="appointment"></param>
+        public void AddAppointment(Appointment appointment)
+        {
+            VetClinic.Schedule.Appointments.Add(appointment);
+        }
+
+        /// <summary>
+        /// Edit appointment in schedule
+        /// </summary>
+        /// <param name="oldAppointment"></param>
+        /// <param name="newAppointment"></param>
+        public void EditAppointment(Appointment oldAppointment, Appointment newAppointment)
+        {
+            var index = VetClinic.Schedule.Appointments.IndexOf(oldAppointment);
+            VetClinic.Schedule.Appointments[index] = newAppointment;
+        }
+
+        /// <summary>
+        /// Remove appointment
+        /// </summary>
+        /// <param name="appointment"></param>
+        public void RemoveAppointment(Appointment appointment)
+        {
+            // review algorithm
+            VetClinic.Schedule.Appointments.Remove(appointment);
         }
     }
 }

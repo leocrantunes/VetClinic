@@ -24,7 +24,7 @@
         <TextBlock Foreground="Red" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Message}" HorizontalAlignment="Center"/>
         <Label Grid.Row="1" Grid.Column="0" FontWeight="Bold" Content="Pet information" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"/>
         <Label Grid.Row="2" Grid.Column="0" Content="Patient:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
-        <ComboBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Height="23" VerticalAlignment="Center" Width="200" ItemsSource="{Binding RegisteredPets}" ItemTemplate="{DynamicResource PatientList}">
+        <ComboBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Height="23" VerticalAlignment="Center" Width="200" ItemsSource="{Binding RegisteredPets}" ItemTemplate="{DynamicResource PatientList}" SelectedValue="{Binding Appointment.Patient}">
             <ComboBox.Resources>
                 <DataTemplate x:Key="PatientList">
                     <StackPanel Orientation="Horizontal">
@@ -36,13 +36,27 @@
         </ComboBox>
         <Label Grid.Row="3" Grid.Column="0" Content="Date:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
         <ComboBox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" Height="23" VerticalAlignment="Center" Width="200" />
+        <DatePicker Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" Height="23" VerticalAlignment="Center" Width="200" SelectedDate="{Binding Appointment.Date}">
+            <DatePicker.Resources>
+                <Style TargetType="{x:Type DatePickerTextBox}">
+                    <Setter Property="Control.Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <TextBox x:Name="PART_TextBox" Margin="0" Text="{Binding Path=SelectedDate, StringFormat='dd/MM/yyyy', RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" />
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </DatePicker.Resources>
+        </DatePicker>
+
         <Label Grid.Row="4" Grid.Column="0" Content="Time:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
-        <ComboBox Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" Height="23" VerticalAlignment="Center" Width="200" />
+        <ComboBox Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" Height="23" VerticalAlignment="Center" Width="200" ItemsSource="{Binding PossibleHours}" SelectedValue="{Binding Appointment.Time}" />
         <Label Grid.Row="5" Grid.Column="0" Content="Type of Service:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
-        <ComboBox Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" Height="23" VerticalAlignment="Center" Width="200" ItemsSource="{Binding ServiceTypes}" />
+        <ComboBox Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" Height="23" VerticalAlignment="Center" Width="200" ItemsSource="{Binding ServiceTypes}" SelectedValue="{Binding Appointment.ServiceType}" />
         <Label Grid.Row="6" Grid.Column="0" Content="Place" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
-        <ComboBox Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center" Height="23" VerticalAlignment="Center" Width="200" ItemsSource="{Binding Places}" />
-        <Button Grid.Row="11" Grid.Column="1" x:Name="btnOk" Content="OK" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="23" Click="BtnCancel_Click" />
-        <Button Grid.Row="11" Grid.Column="0" x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="23" Click="BtnOk_Click" />
+        <ComboBox Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center" Height="23" VerticalAlignment="Center" Width="200" ItemsSource="{Binding Places}" SelectedValue="{Binding Appointment.Place}" />
+        <Button Grid.Row="11" Grid.Column="1" x:Name="btnOk" Content="OK" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="23" Click="BtnOk_Click" />
+        <Button Grid.Row="11" Grid.Column="0" x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="23" Click="BtnCancel_Click" />
     </Grid>
 </Window>

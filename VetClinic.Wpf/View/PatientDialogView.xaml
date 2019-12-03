@@ -58,7 +58,7 @@
         <Label Grid.Row="1" Grid.Column="2" FontWeight="Bold" Content="Pet information" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"/>
         
         <Label Grid.Row="2" Grid.Column="2" Content="Type of pet:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
-        <ComboBox Grid.Row="2" Grid.Column="3" HorizontalAlignment="Center" Height="23" VerticalAlignment="Center" Width="200" ItemsSource="{Binding TypesOfPet}" SelectedItem="{Binding Patient.Type}"/>
+        <ComboBox Grid.Row="2" Grid.Column="3" HorizontalAlignment="Center" Height="23" VerticalAlignment="Center" Width="200" ItemsSource="{Binding PetTypes}" SelectedItem="{Binding Patient.Type}"/>
 
         <Label Grid.Row="3" Grid.Column="2" Content="Name:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
         <TextBox Grid.Row="3" Grid.Column="3" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="200" Text="{Binding Patient.Name}"/>
