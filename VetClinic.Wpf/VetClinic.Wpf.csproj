@@ -60,15 +60,23 @@
     <Compile Include="Model\Enum\AppointmentPlace.cs" />
     <Compile Include="Model\Schedule.cs" />
     <Compile Include="Model\Appointment.cs" />
+    <Compile Include="ViewModel\PatientListDialogViewModel.cs" />
     <Compile Include="ViewModel\AppointmentDialogViewModel.cs" />
     <Compile Include="ViewModel\PatientDialogViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="View\PatientListDialogView.xaml.cs">
+      <DependentUpon>PatientListDialogView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AppointmentDialogView.xaml.cs">
       <DependentUpon>AppointmentDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PatientDialogView.xaml.cs">
       <DependentUpon>PatientDialogView.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\PatientListDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\AppointmentDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

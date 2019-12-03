@@ -17,6 +17,7 @@
             <MenuItem Header="_Tools">
                 <MenuItem x:Name="menuItemRegisterPatient" Header="_Register..." Click="ButtonAddPatient_Click" />
                 <MenuItem x:Name="menuItemMakeAppointment" Header="_Appointment..." Click="ButtonMakeAppointment_Click" />
+                <MenuItem x:Name="menuItemDisplayPatientList" Header="_PatientList..." Click="ButtonDisplayPatientList_Click" />
             </MenuItem>
         </Menu>
         <Grid x:Name="gridMainBody">

@@ -1,0 +1,41 @@
+﻿<Window x:Class="VetClinic.Wpf.View.PatientListDialogView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VetClinic.Wpf.View"
+        mc:Ignorable="d"
+        Title="Patient List" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
+    <Grid x:Name="gridMainBody" Height="233">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <GroupBox Grid.Column="1" Margin="5" Header="Patient List">
+            <DataGrid x:Name="lstPatients" IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding RegisteredPets}" HorizontalAlignment="Stretch" Margin="5,5,5,17.333" VerticalAlignment="Stretch">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Patient" Binding="{Binding Name}" />
+                    <DataGridTextColumn Header="Breed" Binding="{Binding Breed}" />
+                    <DataGridTextColumn Header="Age" Binding="{Binding Age}" />
+                    <DataGridTextColumn Header="Type" Binding="{Binding Type}" />
+                    <DataGridTextColumn Header="Gender" Binding="{Binding Gender}" />
+                    <DataGridTextColumn Header="Owner" Binding="{Binding Owner.Name}" />
+                    <DataGridTemplateColumn MinWidth="70">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="btnEditAppointment" Content="Edit" Click="BtnEditPatient_Click"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn MinWidth="70">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="btnDeleteAppointment" Content="Delete"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+        <Button Grid.Row="11" Margin="5" Grid.Column="1" x:Name="btnOk" Content="OK" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="80" Height="23" Click="BtnOk_Click" />
+    </Grid>
+</Window>

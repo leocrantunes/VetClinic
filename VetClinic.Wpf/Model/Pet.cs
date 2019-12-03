@@ -20,6 +20,21 @@ namespace VetClinic.Wpf.Model
             Owner = new Person();
         }
 
+        public Pet(Pet pet)
+        {
+            Id = pet.Id;
+            Name = pet.Name;
+            Breed = pet.Breed;
+            Age = pet.Age;
+            Weight = pet.Weight;
+            Length = pet.Length;
+            Height = pet.Height;
+            Type = pet.Type;
+            Gender = pet.Gender;
+
+            Owner = pet.Owner;
+        }
+
         private string _id;
         public string Id
         {

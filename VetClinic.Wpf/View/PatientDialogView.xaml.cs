@@ -11,11 +11,11 @@ namespace VetClinic.Wpf.View
     /// </summary>
     public partial class PatientDialogView : Window
     {
-        public PatientDialogView(ObservableCollection<Pet> registeredPets)
+        public PatientDialogView(ObservableCollection<Pet> registeredPets, Pet patient = null)
         {
             InitializeComponent();
 
-            ViewModel = new PatientDialogViewModel(registeredPets);
+            ViewModel = new PatientDialogViewModel(registeredPets, patient);
             DataContext = ViewModel;
         }
 
