@@ -1,23 +1,211 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Clinic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Schedule>
+    <Appointments>
+      <Appointment>
+        <Patient>
+          <Id>1</Id>
+          <Name>Ficker</Name>
+          <Breed>Husky</Breed>
+          <Age>8</Age>
+          <Weight>10</Weight>
+          <Length>6</Length>
+          <Height>2</Height>
+          <Type>Dog</Type>
+          <Gender>Male</Gender>
+          <Owner>
+            <FirstName>Leo</FirstName>
+            <LastName>Antunes</LastName>
+            <Address>600 Greenfield Avenue</Address>
+            <City>Kitchener</City>
+            <Province>Ontario</Province>
+            <PostalCode>N2C 2J9</PostalCode>
+            <Phone>226999999</Phone>
+            <Email>test@test.com</Email>
+          </Owner>
+        </Patient>
+        <Date>2019-12-02T00:00:00-05:00</Date>
+        <Time>432000000000</Time>
+        <Place>Clinic</Place>
+        <ServiceType>Therapeutic</ServiceType>
+      </Appointment>
+      <Appointment>
+        <Patient>
+          <Id>1</Id>
+          <Name>Ficker</Name>
+          <Breed>Husky</Breed>
+          <Age>8</Age>
+          <Weight>10</Weight>
+          <Length>6</Length>
+          <Height>2</Height>
+          <Type>Dog</Type>
+          <Gender>Male</Gender>
+          <Owner>
+            <FirstName>Leo</FirstName>
+            <LastName>Antunes</LastName>
+            <Address>600 Greenfield Avenue</Address>
+            <City>Kitchener</City>
+            <Province>Ontario</Province>
+            <PostalCode>N2C 2J9</PostalCode>
+            <Phone>226999999</Phone>
+            <Email>test@test.com</Email>
+          </Owner>
+        </Patient>
+        <Date>2019-12-02T00:00:00-05:00</Date>
+        <Time>432000000000</Time>
+        <Place>Clinic</Place>
+        <ServiceType>Therapeutic</ServiceType>
+      </Appointment>
+      <Appointment>
+        <Patient>
+          <Id>1</Id>
+          <Name>Ficker</Name>
+          <Breed>Husky</Breed>
+          <Age>8</Age>
+          <Weight>10</Weight>
+          <Length>6</Length>
+          <Height>2</Height>
+          <Type>Dog</Type>
+          <Gender>Male</Gender>
+          <Owner>
+            <FirstName>Leo</FirstName>
+            <LastName>Antunes</LastName>
+            <Address>600 Greenfield Avenue</Address>
+            <City>Kitchener</City>
+            <Province>Ontario</Province>
+            <PostalCode>N2C 2J9</PostalCode>
+            <Phone>226999999</Phone>
+            <Email>test@test.com</Email>
+          </Owner>
+        </Patient>
+        <Date>2019-12-02T00:00:00-05:00</Date>
+        <Time>360000000000</Time>
+        <Place>Clinic</Place>
+        <ServiceType>Surgery</ServiceType>
+      </Appointment>
+      <Appointment>
+        <Patient>
+          <Id>1</Id>
+          <Name>Ficker</Name>
+          <Breed>Husky</Breed>
+          <Age>8</Age>
+          <Weight>10</Weight>
+          <Length>6</Length>
+          <Height>2</Height>
+          <Type>Dog</Type>
+          <Gender>Male</Gender>
+          <Owner>
+            <FirstName>Leo</FirstName>
+            <LastName>Antunes</LastName>
+            <Address>600 Greenfield Avenue</Address>
+            <City>Kitchener</City>
+            <Province>Ontario</Province>
+            <PostalCode>N2C 2J9</PostalCode>
+            <Phone>226999999</Phone>
+            <Email>test@test.com</Email>
+          </Owner>
+        </Patient>
+        <Date>2019-12-03T00:00:00-05:00</Date>
+        <Time>432000000000</Time>
+        <Place>Clinic</Place>
+        <ServiceType>Surgery</ServiceType>
+      </Appointment>
+      <Appointment>
+        <Patient>
+          <Id>1</Id>
+          <Name>Ficker</Name>
+          <Breed>Husky</Breed>
+          <Age>8</Age>
+          <Weight>10</Weight>
+          <Length>6</Length>
+          <Height>2</Height>
+          <Type>Dog</Type>
+          <Gender>Male</Gender>
+          <Owner>
+            <FirstName>Leo</FirstName>
+            <LastName>Antunes</LastName>
+            <Address>600 Greenfield Avenue</Address>
+            <City>Kitchener</City>
+            <Province>Ontario</Province>
+            <PostalCode>N2C 2J9</PostalCode>
+            <Phone>226999999</Phone>
+            <Email>test@test.com</Email>
+          </Owner>
+        </Patient>
+        <Date>2019-12-03T00:00:00-05:00</Date>
+        <Time>432000000000</Time>
+        <Place>Clinic</Place>
+        <ServiceType>Therapeutic</ServiceType>
+      </Appointment>
+      <Appointment>
+        <Patient>
+          <Id>509a965160ab453c93e92ffbb7da65a0</Id>
+          <Name>Kitty</Name>
+          <Breed>Siamese</Breed>
+          <Age>12</Age>
+          <Weight>4</Weight>
+          <Length>2</Length>
+          <Height>1</Height>
+          <Type>Cat</Type>
+          <Gender>Female</Gender>
+          <Owner>
+            <FirstName>John</FirstName>
+            <LastName>Smith</LastName>
+            <Address>400 Test Avenue</Address>
+            <City>Kitchener</City>
+            <Province>Ontario</Province>
+            <PostalCode>N2E 1S4</PostalCode>
+            <Phone>22699977788</Phone>
+            <Email>test@test.com</Email>
+          </Owner>
+        </Patient>
+        <Date>2019-12-20T00:00:00</Date>
+        <Time>540000000000</Time>
+        <Place>Clinic</Place>
+        <ServiceType>Vaccination</ServiceType>
+      </Appointment>
+    </Appointments>
+  </Schedule>
   <Patients>
     <Pet>
-      <Name>Flick</Name>
-      <Breed>Sheppard</Breed>
+      <Id>1</Id>
+      <Name>Ficker</Name>
+      <Breed>Husky</Breed>
       <Age>8</Age>
       <Weight>10</Weight>
-      <Length>4</Length>
+      <Length>6</Length>
       <Height>2</Height>
       <Type>Dog</Type>
       <Gender>Male</Gender>
       <Owner>
-        <FirstName>John</FirstName>
-        <LastName>Smith</LastName>
-        <Address>300 Red Avenue</Address>
+        <FirstName>Leo</FirstName>
+        <LastName>Antunes</LastName>
+        <Address>600 Greenfield Avenue</Address>
         <City>Kitchener</City>
         <Province>Ontario</Province>
-        <PostalCode>N3V 1G4</PostalCode>
-        <Phone>2269998888</Phone>
+        <PostalCode>N2C 2J9</PostalCode>
+        <Phone>226999999</Phone>
+        <Email>test@test.com</Email>
+      </Owner>
+    </Pet>
+    <Pet>
+      <Id>509a965160ab453c93e92ffbb7da65a0</Id>
+      <Name>Kitty</Name>
+      <Breed>Siamese</Breed>
+      <Age>12</Age>
+      <Weight>4</Weight>
+      <Length>2</Length>
+      <Height>1</Height>
+      <Type>Cat</Type>
+      <Gender>Female</Gender>
+      <Owner>
+        <FirstName>John</FirstName>
+        <LastName>Smith</LastName>
+        <Address>400 Test Avenue</Address>
+        <City>Kitchener</City>
+        <Province>Ontario</Province>
+        <PostalCode>N2E 1S4</PostalCode>
+        <Phone>22699977788</Phone>
         <Email>test@test.com</Email>
       </Owner>
     </Pet>
