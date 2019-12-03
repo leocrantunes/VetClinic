@@ -20,13 +20,39 @@
             </MenuItem>
         </Menu>
         <Grid x:Name="gridMainBody">
-            <Grid Grid.Row="1" >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="200"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <DataGrid x:Name="lstAppointments" ItemsSource="{Binding VetClinic.Schedule.Appointments}" HorizontalAlignment="Stretch" Margin="10" Grid.Column="1" VerticalAlignment="Stretch" />
-            </Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <GroupBox Grid.Column="0" Margin="5" Header="Filters">
+
+            </GroupBox>
+            <GroupBox Grid.Column="1" Margin="5" Header="Appointments">
+                <DataGrid x:Name="lstAppointments" IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding VetClinic.Schedule.Appointments}" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Stretch">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Patient" Binding="{Binding Patient.Name}" />
+                        <DataGridTextColumn Header="Breed" Binding="{Binding Patient.Breed}" />
+                        <DataGridTextColumn Header="Owner" Binding="{Binding Patient.Owner.Name}" />
+                        <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat='dd/MM/yyyy'}" />
+                        <DataGridTextColumn Header="Time" Binding="{Binding Time}" />
+                        <DataGridTextColumn Header="ServiceType" Binding="{Binding ServiceType}" />
+                        <DataGridTemplateColumn MinWidth="70">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button x:Name="btnEditAppointment" Content="Edit" Click="BtnEditAppointment_Click"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn MinWidth="70">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button x:Name="btnDeleteAppointment" Content="Delete" Click="BtnDeleteAppointment_Click"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </GroupBox>
         </Grid>
     </DockPanel>
 </Window>

@@ -7,6 +7,7 @@ namespace VetClinic.Wpf.Model
     {
         public Pet()
         {
+            Id = string.Empty;
             Name = string.Empty;
             Breed = string.Empty;
             Age = null;
@@ -17,6 +18,17 @@ namespace VetClinic.Wpf.Model
             Gender = null;
 
             Owner = new Person();
+        }
+
+        private string _id;
+        public string Id
+        {
+            get { return _id; }
+            set
+            {
+                _id = value;
+                OnPropertyChanged(nameof(Id));
+            }
         }
 
         private string _name;

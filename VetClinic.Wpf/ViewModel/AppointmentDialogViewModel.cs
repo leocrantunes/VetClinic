@@ -13,10 +13,10 @@ namespace VetClinic.Wpf.ViewModel
         private const int SlotLength = 8;
         private const int SlotSize = 1;
 
-        public AppointmentDialogViewModel(Schedule schedule, ObservableCollection<Pet> registeredPets)
+        public AppointmentDialogViewModel(Schedule schedule, ObservableCollection<Pet> registeredPets, Appointment appointment = null)
         {
             Message = string.Empty;
-            Appointment = new Appointment();
+            Appointment = appointment == null ? new Appointment() : new Appointment(appointment, registeredPets.FirstOrDefault(p => p.Id == appointment.Patient?.Id));
             Schedule = schedule;
             RegisteredPets = registeredPets;
 
@@ -79,7 +79,9 @@ namespace VetClinic.Wpf.ViewModel
         {
             PossibleHours.Clear();
             for (int i = 0; i < SlotLength; i++)
+            {
                 PossibleHours.Add(TimeSpan.FromHours(SlotTimeBeginning + i * SlotSize));
+            }
         }
     }
 }

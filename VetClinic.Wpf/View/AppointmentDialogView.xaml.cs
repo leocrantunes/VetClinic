@@ -22,11 +22,11 @@ namespace VetClinic.Wpf.View
     /// </summary>
     public partial class AppointmentDialogView : Window
     {
-        public AppointmentDialogView(Schedule schedule, ObservableCollection<Pet> registeredPets)
+        public AppointmentDialogView(Schedule schedule, ObservableCollection<Pet> registeredPets, Appointment appointment = null)
         {
             InitializeComponent();
 
-            ViewModel = new AppointmentDialogViewModel(schedule, registeredPets);
+            ViewModel = new AppointmentDialogViewModel(schedule, registeredPets, appointment);
             DataContext = ViewModel;
         }
 

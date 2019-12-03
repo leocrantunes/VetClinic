@@ -36,7 +36,20 @@
         </ComboBox>
         <Label Grid.Row="3" Grid.Column="0" Content="Date:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
         <ComboBox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" Height="23" VerticalAlignment="Center" Width="200" />
-        <TextBox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" Height="23" VerticalAlignment="Center" Width="200" Text="{Binding Appointment.Date, StringFormat='dd/MM/yyyy'}"/>
+        <DatePicker Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" Height="23" VerticalAlignment="Center" Width="200" SelectedDate="{Binding Appointment.Date}">
+            <DatePicker.Resources>
+                <Style TargetType="{x:Type DatePickerTextBox}">
+                    <Setter Property="Control.Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <TextBox x:Name="PART_TextBox" Margin="0" Text="{Binding Path=SelectedDate, StringFormat='dd/MM/yyyy', RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" />
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </DatePicker.Resources>
+        </DatePicker>
+
         <Label Grid.Row="4" Grid.Column="0" Content="Time:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
         <ComboBox Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" Height="23" VerticalAlignment="Center" Width="200" ItemsSource="{Binding PossibleHours}" SelectedValue="{Binding Appointment.Time}" />
         <Label Grid.Row="5" Grid.Column="0" Content="Type of Service:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />

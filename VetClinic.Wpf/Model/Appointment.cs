@@ -17,7 +17,16 @@ namespace VetClinic.Wpf.Model
             Place = null;
             ServiceType = null;
         }
-        
+
+        public Appointment(Appointment appointment, Pet patient)
+        {
+            Patient = patient;
+            Date = appointment.Date;
+            Time = appointment.Time;
+            Place = appointment.Place;
+            ServiceType = appointment.ServiceType;
+        }
+
         private Pet _patient;
         public Pet Patient
         {
