@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Xml.Serialization;
 using VetClinic.Wpf.Core;
 using VetClinic.Wpf.Model.Enum;
 
@@ -12,7 +13,7 @@ namespace VetClinic.Wpf.Model
         {
             Patient = new Pet();
             Date = DateTime.Today;
-            Time = null;
+            Time = TimeSpan.FromHours(12);
             Place = null;
             ServiceType = null;
         }
@@ -39,8 +40,9 @@ namespace VetClinic.Wpf.Model
             }
         }
 
-        private TimeSpan? _time;
-        public TimeSpan? Time
+        private TimeSpan _time;
+        [XmlIgnore]
+        public TimeSpan Time
         {
             get { return _time; }
             set
@@ -48,6 +50,14 @@ namespace VetClinic.Wpf.Model
                 _time = value;
                 OnPropertyChanged(nameof(Time));
             }
+        }
+        
+        // Pretend property for serialization
+        [XmlElement("Time")]
+        public long TimeTicks
+        {
+            get { return _time.Ticks; }
+            set { _time = new TimeSpan(value); }
         }
 
         private AppointmentPlace? _appointmentPlace;

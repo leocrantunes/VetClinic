@@ -25,7 +25,7 @@
                     <ColumnDefinition Width="200"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <ListView x:Name="lstAppointments" ItemsSource="{Binding VetClinic.Schedule.Appointments}" HorizontalAlignment="Stretch" Margin="10" Grid.Column="1" VerticalAlignment="Stretch" />
+                <DataGrid x:Name="lstAppointments" ItemsSource="{Binding VetClinic.Schedule.Appointments}" HorizontalAlignment="Stretch" Margin="10" Grid.Column="1" VerticalAlignment="Stretch" />
             </Grid>
         </Grid>
     </DockPanel>
