@@ -60,7 +60,7 @@ namespace VetClinic.Wpf.View
 
                 if (dlg.DialogResult == true)
                 {
-                    ViewModel.EditPatient(pet, dlg.ViewModel.Patient);
+                    ViewModel.EditPatient(dlg.ViewModel.Patient);
                 }
             }
             catch (Exception)

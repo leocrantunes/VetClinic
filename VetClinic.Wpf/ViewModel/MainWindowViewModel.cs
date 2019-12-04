@@ -86,10 +86,18 @@ namespace VetClinic.Wpf.ViewModel
             VetClinic.Patients.Add(patient);
         }
 
-        public void EditPatient(Pet oldPatient, Pet newPatient)
+        public void EditPatient(Pet newPatient)
         {
-            var index = VetClinic.Patients.IndexOf(oldPatient);
+            var patientToEdit = VetClinic.Patients.FirstOrDefault(p => p.Id == newPatient.Id);
+            if (patientToEdit == null)
+            {
+                throw new Exception("Patient not found");
+            }
+
+            var index = VetClinic.Patients.IndexOf(patientToEdit);
             VetClinic.Patients[index] = newPatient;
+
+            UpdateAssociatedAppointments(newPatient);
         }
 
         /// <summary>
@@ -98,8 +106,39 @@ namespace VetClinic.Wpf.ViewModel
         /// <param name="patient"></param>
         public void RemovePatient(Pet patient)
         {
-            // review algorithm
-            VetClinic.Patients.Remove(patient);
+            var patientToRemove = VetClinic.Patients.FirstOrDefault(p => p.Id == patient.Id);
+            if (patientToRemove == null)
+            {
+                throw new Exception("Patient not found");
+            }
+            
+            VetClinic.Patients.Remove(patientToRemove);
+            RemoveAssociatedAppointments(patientToRemove);
+        }
+
+        private void UpdateAssociatedAppointments(Pet patient)
+        {
+            var appointments = from a in VetClinic.Schedule.Appointments.ToList()
+                               where a.Patient?.Id == patient?.Id
+                               select a;
+
+            foreach (var appointment in appointments)
+            {
+                var index = VetClinic.Schedule.Appointments.IndexOf(appointment);
+                VetClinic.Schedule.Appointments[index].Patient = patient;
+            }
+        }
+
+        private void RemoveAssociatedAppointments(Pet patient)
+        {
+            var appointments = from a in VetClinic.Schedule.Appointments.ToList()
+                               where a.Patient.Id == patient.Id
+                               select a;
+
+            foreach (var a in appointments)
+            {
+                RemoveAppointment(a);
+            }
         }
 
         /// <summary>
@@ -117,9 +156,15 @@ namespace VetClinic.Wpf.ViewModel
         /// </summary>
         /// <param name="oldAppointment"></param>
         /// <param name="newAppointment"></param>
-        public void EditAppointment(Appointment oldAppointment, Appointment newAppointment)
+        public void EditAppointment(Appointment newAppointment)
         {
-            var index = VetClinic.Schedule.Appointments.IndexOf(oldAppointment);
+            var appointmentToEdit = VetClinic.Schedule.Appointments.FirstOrDefault(a => a.Id == newAppointment.Id);
+            if (appointmentToEdit == null)
+            {
+                throw new Exception("Appointment not found");
+            }
+
+            var index = VetClinic.Schedule.Appointments.IndexOf(appointmentToEdit);
             VetClinic.Schedule.Appointments[index] = newAppointment;
         }
 
@@ -129,7 +174,12 @@ namespace VetClinic.Wpf.ViewModel
         /// <param name="appointment"></param>
         public void RemoveAppointment(Appointment appointment)
         {
-            // review algorithm
+            var appointmentToRemove = VetClinic.Schedule.Appointments.FirstOrDefault(a => a.Id == appointment.Id);
+            if (appointmentToRemove == null)
+            {
+                throw new Exception("Appointment not found");
+            }
+
             VetClinic.Schedule.Appointments.Remove(appointment);
         }
 

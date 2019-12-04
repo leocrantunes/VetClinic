@@ -22,7 +22,7 @@ namespace VetClinic.Wpf.Model
         public Appointment(Appointment appointment, Pet patient)
         {
             Id = appointment.Id;
-            Patient = new Pet(patient);
+            Patient = patient;
             Date = appointment.Date;
             Time = appointment.Time;
             Place = appointment.Place;

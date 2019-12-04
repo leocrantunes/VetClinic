@@ -7,11 +7,12 @@
         mc:Ignorable="d"
         Title="Patient List" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
     <Grid x:Name="gridMainBody" Height="233">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <GroupBox Grid.Column="1" Margin="5" Header="Patient List">
-            <DataGrid x:Name="lstPatients" IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding MainWindowViewModel.VetClinic.Patients}" HorizontalAlignment="Stretch" Margin="5,5,5,17.333" VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <GroupBox Grid.Row="0" Header="Patient List">
+            <DataGrid x:Name="lstPatients" IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding MainWindowViewModel.VetClinic.Patients}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Patient" Binding="{Binding Name}" />
                     <DataGridTextColumn Header="Breed" Binding="{Binding Breed}" />
@@ -29,13 +30,13 @@
                     <DataGridTemplateColumn MinWidth="70">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button x:Name="btnDeleteAppointment" Content="Delete"/>
+                                <Button x:Name="btnDeleteAppointment" Content="Delete" Click="BtnDeletePatient_Click"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </GroupBox>
-        <Button Grid.Row="11" Margin="5" Grid.Column="1" x:Name="btnOk" Content="OK" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="80" Height="23" Click="BtnOk_Click" />
+        <Button Grid.Row="1" Grid.Column="1" x:Name="btnOk" Content="OK" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="23" Click="BtnOk_Click" />
     </Grid>
 </Window>

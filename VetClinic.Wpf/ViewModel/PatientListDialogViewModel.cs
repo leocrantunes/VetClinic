@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using VetClinic.Wpf.Core;
+﻿using VetClinic.Wpf.Core;
 using VetClinic.Wpf.Model;
 
 namespace VetClinic.Wpf.ViewModel
@@ -11,11 +10,18 @@ namespace VetClinic.Wpf.ViewModel
             MainWindowViewModel = mainWindowViewModel;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public MainWindowViewModel MainWindowViewModel { get; set; }
 
-        public void EditPatient(Pet oldPatient, Pet newPatient)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="newPatient"></param>
+        public void EditPatient(Pet newPatient)
         {
-            MainWindowViewModel.EditPatient(oldPatient, newPatient);
+            MainWindowViewModel.EditPatient(newPatient);
         }
 
         /// <summary>
