@@ -11,6 +11,7 @@ namespace VetClinic.Wpf.Model
     {
         public Appointment()
         {
+            Id = string.Empty;
             Patient = new Pet();
             Date = DateTime.Today;
             Time = TimeSpan.FromHours(12);
@@ -20,11 +21,23 @@ namespace VetClinic.Wpf.Model
 
         public Appointment(Appointment appointment, Pet patient)
         {
-            Patient = patient;
+            Id = appointment.Id;
+            Patient = new Pet(patient);
             Date = appointment.Date;
             Time = appointment.Time;
             Place = appointment.Place;
             ServiceType = appointment.ServiceType;
+        }
+
+        private string _id;
+        public string Id
+        {
+            get { return _id; }
+            set
+            {
+                _id = value;
+                OnPropertyChanged(nameof(Id));
+            }
         }
 
         private Pet _patient;
@@ -61,7 +74,6 @@ namespace VetClinic.Wpf.Model
             }
         }
         
-        // Pretend property for serialization
         [XmlElement("Time")]
         public long TimeTicks
         {

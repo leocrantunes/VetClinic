@@ -145,9 +145,13 @@ namespace VetClinic.Wpf.Model
             }
         }
 
+        #region Derived Properties
+
         public string NameAndOwner
         {
             get { return $"{Name}, owner: {Owner?.Name}"; }
         }
+
+        #endregion Derived Properties
     }
 }

@@ -1,41 +1,30 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Linq;
+﻿using System.Collections.ObjectModel;
 using VetClinic.Wpf.Core;
 using VetClinic.Wpf.Model;
-using VetClinic.Wpf.Model.Enum;
 
 namespace VetClinic.Wpf.ViewModel
 {
     public class PatientListDialogViewModel : BaseNotifyPropertyChanged
     {
-
-        public PatientListDialogViewModel(ObservableCollection<Pet> registeredPets)
+        public PatientListDialogViewModel(MainWindowViewModel mainWindowViewModel)
         {
-            RegisteredPets = registeredPets;
-
+            MainWindowViewModel = mainWindowViewModel;
         }
 
-        public ObservableCollection<Pet> RegisteredPets { get; set; }
+        public MainWindowViewModel MainWindowViewModel { get; set; }
 
-
-        // create editpatient and removepatient method
-
-        /*public void EditPatient(Appointment oldAppointment, Appointment newAppointment)
+        public void EditPatient(Pet oldPatient, Pet newPatient)
         {
-            //var index = VetClinic.Schedule.Appointments.IndexOf(oldAppointment);
-            //VetClinic.Schedule.Appointments[index] = newAppointment;
+            MainWindowViewModel.EditPatient(oldPatient, newPatient);
         }
 
         /// <summary>
-        /// Remove appointment
+        /// Remove patient
         /// </summary>
-        /// <param name="appointment"></param>
-        public void RemovePatient(Appointment appointment)
+        /// <param name="patient"></param>
+        public void RemovePatient(Pet patient)
         {
-            // review algorithm
-            //VetClinic.Schedule.Appointments.Remove(appointment);
-        }*/
+            MainWindowViewModel.RemovePatient(patient);
+        }
     }
-
 }

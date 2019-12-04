@@ -22,10 +22,10 @@ namespace VetClinic.Wpf.View
     /// </summary>
     public partial class PatientListDialogView : Window
     {
-        public PatientListDialogView(ObservableCollection<Pet> registeredPets)
+        public PatientListDialogView(MainWindowViewModel mainWindowViewModel)
         {
             InitializeComponent();
-            ViewModel = new PatientListDialogViewModel(registeredPets);
+            ViewModel = new PatientListDialogViewModel(mainWindowViewModel);
             DataContext = ViewModel;
         }
 
@@ -43,8 +43,7 @@ namespace VetClinic.Wpf.View
         {
             DialogResult = true;
         }
-
-
+        
         private void BtnEditPatient_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -52,7 +51,7 @@ namespace VetClinic.Wpf.View
                 var button = sender as Button;
                 var pet = button.DataContext as Pet;
 
-                var dlg = new PatientDialogView(ViewModel.RegisteredPets, pet)
+                var dlg = new PatientDialogView(ViewModel.MainWindowViewModel.VetClinic.Patients, pet)
                 {
                     Owner = this
                 };
@@ -61,7 +60,7 @@ namespace VetClinic.Wpf.View
 
                 if (dlg.DialogResult == true)
                 {
-                    //ViewModel.EditPatient;
+                    ViewModel.EditPatient(pet, dlg.ViewModel.Patient);
                 }
             }
             catch (Exception)
@@ -80,7 +79,7 @@ namespace VetClinic.Wpf.View
                 MessageBoxResult messageBoxResult = MessageBox.Show("Are you sure?", "Delete Confirmation", MessageBoxButton.YesNo);
                 if (messageBoxResult == MessageBoxResult.Yes)
                 {
-                    //ViewModel.RemovePatient;
+                    ViewModel.RemovePatient(pet);
                 }
             }
             catch (Exception)

@@ -86,12 +86,29 @@ namespace VetClinic.Wpf.ViewModel
             VetClinic.Patients.Add(patient);
         }
 
+        public void EditPatient(Pet oldPatient, Pet newPatient)
+        {
+            var index = VetClinic.Patients.IndexOf(oldPatient);
+            VetClinic.Patients[index] = newPatient;
+        }
+
+        /// <summary>
+        /// Remove patient
+        /// </summary>
+        /// <param name="patient"></param>
+        public void RemovePatient(Pet patient)
+        {
+            // review algorithm
+            VetClinic.Patients.Remove(patient);
+        }
+
         /// <summary>
         /// Add appointment to schedule
         /// </summary>
         /// <param name="appointment"></param>
         public void AddAppointment(Appointment appointment)
         {
+            appointment.Id = Guid.NewGuid().ToString("n");
             VetClinic.Schedule.Appointments.Add(appointment);
         }
 

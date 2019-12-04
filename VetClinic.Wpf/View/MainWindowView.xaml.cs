@@ -121,7 +121,7 @@ namespace VetClinic.Wpf.View
         {
             try
             {
-                var dlg = new PatientListDialogView(ViewModel.VetClinic.Patients)
+                var dlg = new PatientListDialogView(ViewModel)
                 {
                     Owner = this
                 };

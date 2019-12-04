@@ -11,7 +11,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <GroupBox Grid.Column="1" Margin="5" Header="Patient List">
-            <DataGrid x:Name="lstPatients" IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding RegisteredPets}" HorizontalAlignment="Stretch" Margin="5,5,5,17.333" VerticalAlignment="Stretch">
+            <DataGrid x:Name="lstPatients" IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding MainWindowViewModel.VetClinic.Patients}" HorizontalAlignment="Stretch" Margin="5,5,5,17.333" VerticalAlignment="Stretch">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Patient" Binding="{Binding Name}" />
                     <DataGridTextColumn Header="Breed" Binding="{Binding Breed}" />
