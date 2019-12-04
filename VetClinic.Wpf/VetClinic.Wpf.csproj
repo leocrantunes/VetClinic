@@ -58,6 +58,7 @@
     <Compile Include="Model\Clinic.cs" />
     <Compile Include="Model\Enum\ServiceType.cs" />
     <Compile Include="Model\Enum\AppointmentPlace.cs" />
+    <Compile Include="Model\Filters\AppointmentFilters.cs" />
     <Compile Include="Model\Schedule.cs" />
     <Compile Include="Model\Appointment.cs" />
     <Compile Include="ViewModel\AppointmentDialogViewModel.cs" />

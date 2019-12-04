@@ -1,8 +1,10 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Xml.Serialization;
 using VetClinic.Wpf.Core;
 using VetClinic.Wpf.Model;
+using VetClinic.Wpf.Model.Filters;
 
 namespace VetClinic.Wpf.ViewModel
 {
@@ -13,6 +15,7 @@ namespace VetClinic.Wpf.ViewModel
         public MainWindowViewModel()
         {
             VetClinic = new Clinic();
+            Filters = new AppointmentFilters();
 
             // load previous data
             ReadXmlData();
@@ -28,7 +31,18 @@ namespace VetClinic.Wpf.ViewModel
                 OnPropertyChanged(nameof(VetClinic));
             }
         }
-        
+
+        private AppointmentFilters _filters;
+        public AppointmentFilters Filters
+        {
+            get { return _filters; }
+            set
+            {
+                _filters = value;
+                OnPropertyChanged(nameof(Filters));
+            }
+        }
+
         /// <summary>
         /// Save data to xml file
         /// </summary>
@@ -100,6 +114,13 @@ namespace VetClinic.Wpf.ViewModel
         {
             // review algorithm
             VetClinic.Schedule.Appointments.Remove(appointment);
+        }
+
+        public void FilterAppointments()
+        {
+            var filtered = from appointment in VetClinic.Schedule.Appointments
+                           where appointment.Patient.Name.ToLower().Contains(Filters.Name.ToLower())
+                           select appointment;
         }
     }
 }

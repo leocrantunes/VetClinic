@@ -161,6 +161,18 @@ namespace VetClinic.Wpf.View
             }
         }
 
+        private void ButtonApplyFilters_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                ViewModel.FilterAppointments();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Unexpected error occurred during filtering appointments");
+            }
+        }
+
         #endregion Event Handlers
     }
 }

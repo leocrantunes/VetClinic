@@ -25,7 +25,48 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <GroupBox Grid.Column="0" Margin="5" Header="Filters">
-
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="26" />
+                        <RowDefinition Height="26" />
+                        <RowDefinition Height="26" />
+                        <RowDefinition Height="26" />
+                        <RowDefinition Height="26" />
+                        <RowDefinition Height="26" />
+                        <RowDefinition Height="26" />
+                    </Grid.RowDefinitions>
+                    <CheckBox Grid.Row="0" Content="Patient name:" VerticalAlignment="Center" HorizontalAlignment="Left" IsChecked="{Binding Filters.IsNameSelected}" />
+                    <TextBox Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Text="{Binding Filters.Name}" IsEnabled="{Binding Filters.IsNameSelected}" />
+                    <CheckBox Grid.Row="2" Content="Date from:" VerticalAlignment="Center" HorizontalAlignment="Left" IsChecked="{Binding Filters.IsDateFromSelected}"  />
+                    <DatePicker Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Stretch" SelectedDate="{Binding Filters.DateFrom}" IsEnabled="{Binding Filters.IsDateFromSelected}">
+                        <DatePicker.Resources>
+                            <Style TargetType="{x:Type DatePickerTextBox}">
+                                <Setter Property="Control.Template">
+                                    <Setter.Value>
+                                        <ControlTemplate>
+                                            <TextBox x:Name="PART_TextBox" Margin="0" Text="{Binding Path=SelectedDate, StringFormat='dd/MM/yyyy', RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" />
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </DatePicker.Resources>
+                    </DatePicker>
+                    <CheckBox Grid.Row="4" Content="Date to:" VerticalAlignment="Center" HorizontalAlignment="Left" IsChecked="{Binding Filters.IsDateToSelected}" />
+                    <DatePicker Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Stretch" SelectedDate="{Binding Filters.DateTo}" IsEnabled="{Binding Filters.IsDateToSelected}">
+                        <DatePicker.Resources>
+                            <Style TargetType="{x:Type DatePickerTextBox}">
+                                <Setter Property="Control.Template">
+                                    <Setter.Value>
+                                        <ControlTemplate>
+                                            <TextBox x:Name="PART_TextBox" Margin="0" Text="{Binding Path=SelectedDate, StringFormat='dd/MM/yyyy', RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" />
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </DatePicker.Resources>
+                    </DatePicker>
+                    <Button x:Name="buttonApplyFilters" Content="Apply" Grid.Row="6" Width="80"  VerticalAlignment="Center" HorizontalAlignment="Right" Click="ButtonApplyFilters_Click" />
+                </Grid>
             </GroupBox>
             <GroupBox Grid.Column="1" Margin="5" Header="Appointments">
                 <DataGrid x:Name="lstAppointments" IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding VetClinic.Schedule.Appointments}" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Stretch">

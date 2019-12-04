@@ -28,8 +28,7 @@
             <ComboBox.Resources>
                 <DataTemplate x:Key="PatientList">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Path=Name}" />
-                        <TextBlock Text="{Binding Path=Breed}"/>
+                        <TextBlock Text="{Binding NameAndOwner}" />
                     </StackPanel>
                 </DataTemplate>
             </ComboBox.Resources>

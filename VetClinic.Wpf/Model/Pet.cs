@@ -129,5 +129,10 @@ namespace VetClinic.Wpf.Model
                 OnPropertyChanged(nameof(Owner));
             }
         }
+
+        public string NameAndOwner
+        {
+            get { return $"{Name}, owner: {Owner?.Name}"; }
+        }
     }
 }
