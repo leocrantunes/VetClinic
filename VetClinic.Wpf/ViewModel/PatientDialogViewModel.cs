@@ -9,10 +9,11 @@ namespace VetClinic.Wpf.ViewModel
 {
     public class PatientDialogViewModel : BaseNotifyPropertyChanged
     {
-        public PatientDialogViewModel(ObservableCollection<Pet> registeredPets)
+        public PatientDialogViewModel(ObservableCollection<Pet> registeredPets, Pet patient = null)
         {
             Message = string.Empty;
-            Patient = new Pet();
+            Patient = patient == null ? new Pet() : new Pet(patient);
+
             RegisteredPets = registeredPets;
 
             Genders = new ObservableCollection<Gender>(Enum.GetValues(typeof(Gender)).Cast<Gender>());

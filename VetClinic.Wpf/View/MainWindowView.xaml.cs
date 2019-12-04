@@ -117,6 +117,28 @@ namespace VetClinic.Wpf.View
             }
         }
 
+        private void ButtonDisplayPatientList_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var dlg = new PatientListDialogView(ViewModel.VetClinic.Patients)
+                {
+                    Owner = this
+                };
+
+                dlg.ShowDialog();
+
+                /*if (dlg.DialogResult == true)
+                {
+                    ViewModel.AddAppointment(dlg.ViewModel.Appointment);
+                }*/
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Unexpected error occurred during display patientlist");
+            }
+        }
+
         private void BtnEditAppointment_Click(object sender, RoutedEventArgs e)
         {
             try
