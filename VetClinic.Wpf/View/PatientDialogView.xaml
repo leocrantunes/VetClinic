@@ -4,12 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VetClinic.Wpf.View"
+        xmlns:Converters="clr-namespace:VetClinic.Wpf.ViewModel.Converters"
         mc:Ignorable="d"
         Title="Register Patient" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
     <Window.Resources>
-        <DataTemplate x:Key="ComboBoxItemTemplateName">
-            <TextBlock Text="{Binding NameAccount}"/>
-        </DataTemplate>
+        <Converters:StringToIntegerConverter x:Key="StringToIntegerConverter"/>
+        <Converters:StringToDecimalConverter x:Key="StringToDecimalConverter"/>
     </Window.Resources>
     <Grid Margin="10,20,10,10">
         <Grid.RowDefinitions>
@@ -32,13 +32,12 @@
             <ColumnDefinition Width="140"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <TextBlock Foreground="Red" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Message}" HorizontalAlignment="Center"/>
-
+        <TextBlock Foreground="Red" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding Message}" HorizontalAlignment="Center"/>
         <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontWeight="Bold" Content="Owner information" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="30"/>
         
-        <Label Grid.Row="2" Grid.Column="0" Content="First name:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
+        <Label Grid.Row="2" Grid.Column="0" Content="First name*:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
         <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="200" Text="{Binding Patient.Owner.FirstName}"/>
-        <Label Grid.Row="3" Grid.Column="0" Content="Last name:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
+        <Label Grid.Row="3" Grid.Column="0" Content="Last name*:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
         <TextBox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="200" Text="{Binding Patient.Owner.LastName}"/>
         <Label Grid.Row="4" Grid.Column="0" Content="Address:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
         <TextBox Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="200" Text="{Binding Patient.Owner.Address}"/>
@@ -50,36 +49,33 @@
         <Label Grid.Row="7" Grid.Column="0" Content="Postal code:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
         <TextBox Grid.Row="7" Grid.Column="1" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="200" Text="{Binding Patient.Owner.PostalCode}"/>
 
-        <Label Grid.Row="8" Grid.Column="0" Content="Phone:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
+        <Label Grid.Row="8" Grid.Column="0" Content="Phone*:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
         <TextBox Grid.Row="8" Grid.Column="1" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="200" Text="{Binding Patient.Owner.Phone}"/>
-        <Label Grid.Row="9" Grid.Column="0" Content="E-mail:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
+        <Label Grid.Row="9" Grid.Column="0" Content="E-mail*:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
         <TextBox Grid.Row="9" Grid.Column="1" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="200" Text="{Binding Patient.Owner.Email}"/>
 
         <Label Grid.Row="1" Grid.Column="2" FontWeight="Bold" Content="Pet information" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"/>
         
-        <Label Grid.Row="2" Grid.Column="2" Content="Type of pet:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
+        <Label Grid.Row="2" Grid.Column="2" Content="Type of pet*:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
         <ComboBox Grid.Row="2" Grid.Column="3" HorizontalAlignment="Center" Height="23" VerticalAlignment="Center" Width="200" ItemsSource="{Binding PetTypes}" SelectedItem="{Binding Patient.Type}"/>
 
-        <Label Grid.Row="3" Grid.Column="2" Content="Name:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
+        <Label Grid.Row="3" Grid.Column="2" Content="Name*:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
         <TextBox Grid.Row="3" Grid.Column="3" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="200" Text="{Binding Patient.Name}"/>
-        <Label Grid.Row="4" Grid.Column="2" Content="Breed:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
+        <Label Grid.Row="4" Grid.Column="2" Content="Breed*:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
         <TextBox Grid.Row="4" Grid.Column="3" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="200" Text="{Binding Patient.Breed}"/>
-        <Label Grid.Row="5" Grid.Column="2" Content="Age:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
-        <TextBox Grid.Row="5" Grid.Column="3" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="200" Text="{Binding Patient.Age}"/>
+        <Label Grid.Row="5" Grid.Column="2" Content="Age*:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
+        <TextBox Grid.Row="5" Grid.Column="3" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="200" Text="{Binding Patient.Age, Converter={StaticResource StringToIntegerConverter}}"/>
 
-        <Label Grid.Row="6" Grid.Column="2" Content="Gender:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
+        <Label Grid.Row="6" Grid.Column="2" Content="Gender*:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
         <ComboBox Grid.Row="6" Grid.Column="3" HorizontalAlignment="Center" Height="23" VerticalAlignment="Center" Width="200" ItemsSource="{Binding Genders}" SelectedItem="{Binding Patient.Gender}"/>
 
-
         <Label Grid.Row="7" Grid.Column="2" Content="Weight:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
-        <TextBox Grid.Row="7" Grid.Column="3" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="200" Text="{Binding Patient.Weight}"/>
-
+        <TextBox Grid.Row="7" Grid.Column="3" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="200" Text="{Binding Patient.Weight, Converter={StaticResource StringToDecimalConverter}}"/>
         <Label Grid.Row="8" Grid.Column="2" Content="Length:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
-        <TextBox Grid.Row="8" Grid.Column="3" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="200" Text="{Binding Patient.Length}"/>
+        <TextBox Grid.Row="8" Grid.Column="3" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="200" Text="{Binding Patient.Length, Converter={StaticResource StringToDecimalConverter}}"/>
         <Label Grid.Row="9" Grid.Column="2" Content="Height:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
-        <TextBox Grid.Row="9" Grid.Column="3" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="200" Text="{Binding Patient.Height}"/>
+        <TextBox Grid.Row="9" Grid.Column="3" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="200" Text="{Binding Patient.Height, Converter={StaticResource StringToDecimalConverter}}"/>
 
-        
         <Button Grid.Row="11" Grid.Column="3" x:Name="btnOk" Content="OK" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="23" Click="BtnOk_Click"/>
         <Button Grid.Row="11" Grid.Column="2" x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="23" Click="BtnCancel_Click"/>
     </Grid>

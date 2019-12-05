@@ -52,7 +52,82 @@ namespace VetClinic.Wpf.ViewModel
         {
             Message = string.Empty;
 
+            // check owner
+            if (!CheckOwnerFields())
+            {
+                return false;
+            }
+            // check pet
+            else if (!CheckPetFields())
+            {
+                return false;
+            }
+
             return true;
+        }
+
+        private bool CheckOwnerFields()
+        {
+            if (string.IsNullOrEmpty(Patient.Owner.FirstName))
+            {
+                Message = "First name is mandatory";
+            }
+            else if (string.IsNullOrEmpty(Patient.Owner.LastName))
+            {
+                Message = "Last name is mandatory";
+            }
+            else if (string.IsNullOrEmpty(Patient.Owner.Phone))
+            {
+                Message = "Phone is mandatory";
+            }
+            else if (Patient.Owner.Phone.Length != 10 || Patient.Owner.Phone.Any(x => !char.IsNumber(x)))
+            {
+                Message = "Phone must have 10 numeric digits";
+            }
+            else if (string.IsNullOrEmpty(Patient.Owner.Email))
+            {
+                Message = "E-mail is mandatory";
+            }
+
+            return Message == string.Empty;
+        }
+
+        private bool CheckPetFields()
+        {
+            if (Patient.Type == null)
+            {
+                Message = "Type of pet is mandatory";
+            }
+            else if (string.IsNullOrEmpty(Patient.Name))
+            {
+                Message = "Patient name is mandatory";
+            }
+            else if (string.IsNullOrEmpty(Patient.Breed))
+            {
+                Message = "Patient breed is mandatory";
+            }
+            else if (Patient.Age == null || Patient.Age < 0)
+            {
+                Message = "Patient age is mandatory and must be greater than or equals to 0 (in case of newborn)";
+            }
+            else if (Patient.Gender == null)
+            {
+                Message = "Patient gender is mandatory";
+            }
+            else if (Patient.Weight != null && Patient.Weight <= 0)
+            {
+                Message = "Patient weight must be greater than 0";
+            }
+            else if (Patient.Length != null && Patient.Length <= 0)
+            {
+                Message = "Patient length must be greater than 0";
+            }
+            else if (Patient.Height != null && Patient.Height <= 0)
+            {
+                Message = "Patient height must be greater than 0";
+            }
+
+            return Message == string.Empty;
         }
     }
 }

@@ -61,6 +61,8 @@
     <Compile Include="Model\Filters\AppointmentFilters.cs" />
     <Compile Include="Model\Schedule.cs" />
     <Compile Include="Model\Appointment.cs" />
+    <Compile Include="ViewModel\Converters\StringToDecimalConverter.cs" />
+    <Compile Include="ViewModel\Converters\StringToIntegerConverter.cs" />
     <Compile Include="ViewModel\Converters\StringToDateTimeConverter.cs" />
     <Compile Include="ViewModel\PatientListDialogViewModel.cs" />
     <Compile Include="ViewModel\AppointmentDialogViewModel.cs" />
