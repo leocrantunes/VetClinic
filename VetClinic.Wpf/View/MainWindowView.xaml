@@ -70,7 +70,7 @@
                 </Grid>
             </GroupBox>
             <GroupBox Grid.Column="1" Margin="5" Header="Appointments">
-                <DataGrid x:Name="lstAppointments" IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding VetClinic.Schedule.Appointments}" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Stretch">
+                <DataGrid x:Name="lstAppointments" IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding  AppointmentsView}" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Stretch">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Patient" Binding="{Binding Patient.Name}" />
                         <DataGridTextColumn Header="Breed" Binding="{Binding Patient.Breed}" />

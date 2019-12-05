@@ -1,6 +1,8 @@
 ﻿using System;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Windows.Data;
 using System.Xml.Serialization;
 using VetClinic.Wpf.Core;
 using VetClinic.Wpf.Model;
@@ -19,6 +21,9 @@ namespace VetClinic.Wpf.ViewModel
 
             // load previous data
             ReadXmlData();
+
+            // set collection view source for filtering
+            AppointmentsView = CollectionViewSource.GetDefaultView(VetClinic.Schedule.Appointments);
         }
 
         private Clinic _vetClinic;
@@ -42,6 +47,11 @@ namespace VetClinic.Wpf.ViewModel
                 OnPropertyChanged(nameof(Filters));
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public ICollectionView AppointmentsView { get; set; }
 
         /// <summary>
         /// Save data to xml file
@@ -182,12 +192,29 @@ namespace VetClinic.Wpf.ViewModel
 
             VetClinic.Schedule.Appointments.Remove(appointment);
         }
-
+        
         public void FilterAppointments()
         {
-            var filtered = from appointment in VetClinic.Schedule.Appointments
-                           where appointment.Patient.Name.ToLower().Contains(Filters.Name.ToLower())
-                           select appointment;
+            AppointmentsView.Filter = 
+                appointment => 
+                    ContainsPatientName(((Appointment)appointment).Patient.Name) &&
+                    AfterDateFrom(((Appointment)appointment).Date) &&
+                    BeforeDateTo(((Appointment)appointment).Date);
+        }
+
+        private bool ContainsPatientName(string name)
+        {
+            return !Filters.IsNameSelected || Filters.IsNameSelected && name.ToLower().Contains(Filters.Name.ToLower());
+        }
+
+        private bool AfterDateFrom(DateTime date)
+        {
+            return !Filters.IsDateFromSelected || Filters.IsNameSelected && date >= Filters.DateFrom;
+        }
+
+        private bool BeforeDateTo(DateTime date)
+        {
+            return !Filters.IsDateToSelected || Filters.IsNameSelected && date >= Filters.DateTo;
         }
     }
 }
