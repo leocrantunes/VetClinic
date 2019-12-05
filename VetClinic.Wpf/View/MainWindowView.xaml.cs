@@ -171,7 +171,7 @@ namespace VetClinic.Wpf.View
         {
             try
             {
-                ViewModel.FilterAppointmentsV2();
+                ViewModel.FilterAppointments();
             }
             catch (Exception)
             {

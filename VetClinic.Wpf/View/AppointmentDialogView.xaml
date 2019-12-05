@@ -4,8 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VetClinic.Wpf.View"
+        xmlns:Converters="clr-namespace:VetClinic.Wpf.ViewModel.Converters"
         mc:Ignorable="d"
         Title="Create an Appointemt" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
+    <Window.Resources>
+        <Converters:StringToDateTimeConverter x:Key="StringToDateTimeConverter"/>
+    </Window.Resources>
     <Grid Margin="10,20,10,10">
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -41,14 +45,13 @@
                     <Setter Property="Control.Template">
                         <Setter.Value>
                             <ControlTemplate>
-                                <TextBox x:Name="PART_TextBox" Margin="0" Text="{Binding Path=SelectedDate, StringFormat='dd/MM/yyyy', RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" />
+                                <TextBox x:Name="PART_TextBox" Margin="0" Text="{Binding Path=SelectedDate, RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}, Converter={StaticResource StringToDateTimeConverter}}" />
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>
                 </Style>
             </DatePicker.Resources>
         </DatePicker>
-
         <Label Grid.Row="4" Grid.Column="0" Content="Time:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
         <ComboBox Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" Height="23" VerticalAlignment="Center" Width="200" ItemsSource="{Binding PossibleHours}" SelectedValue="{Binding Appointment.Time}" />
         <Label Grid.Row="5" Grid.Column="0" Content="Type of Service:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />

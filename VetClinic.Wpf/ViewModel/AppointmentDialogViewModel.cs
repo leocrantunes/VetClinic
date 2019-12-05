@@ -72,7 +72,36 @@ namespace VetClinic.Wpf.ViewModel
         {
             Message = string.Empty;
 
-            return true;
+            if (Appointment == null)
+            {
+                Message = "Appointment is mandatory";
+            }
+            else if (string.IsNullOrEmpty(Appointment.Patient?.Id))
+            {
+                Message = "Patient is mandatory";
+            }
+            else if (Appointment.Date == null)
+            {
+                Message = "Date is mandatory";
+            }
+            else if (Appointment.Time == null || !PossibleHours.Contains(Appointment.Time))
+            {
+                Message = $"Time is mandatory and must be between {PossibleHours?.FirstOrDefault()} and {PossibleHours?.LastOrDefault()}";
+            }
+            else if (Appointment.ServiceType == null)
+            {
+                Message = "Type of service is mandatory";
+            }
+            else if (Appointment.Place == null)
+            {
+                Message = "Place is mandatory";
+            }
+            else if (Schedule.Appointments.Any(s => s.Date == Appointment.Date && s.Time == Appointment.Time))
+            {
+                Message = "There is another appointment at the same day and time";
+            }
+
+            return Message == string.Empty;
         }
 
         private void SetPossibleHours()

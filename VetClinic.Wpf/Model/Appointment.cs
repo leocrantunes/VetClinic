@@ -13,7 +13,7 @@ namespace VetClinic.Wpf.Model
         {
             Id = string.Empty;
             Patient = new Pet();
-            Date = DateTime.Today;
+            Date = null;
             Time = TimeSpan.FromHours(12);
             Place = null;
             ServiceType = null;
@@ -53,8 +53,8 @@ namespace VetClinic.Wpf.Model
             }
         }
 
-        private DateTime _date;
-        public DateTime Date
+        private DateTime? _date;
+        public DateTime? Date
         {
             get { return _date; }
             set
