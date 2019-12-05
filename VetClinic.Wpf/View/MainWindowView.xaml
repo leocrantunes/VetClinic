@@ -14,10 +14,12 @@
                 <Separator />
                 <MenuItem x:Name="menuItemClear" Header="_Clear" Click="MenuItemClear_Click" />
             </MenuItem>
-            <MenuItem Header="_Tools">
-                <MenuItem x:Name="menuItemRegisterPatient" Header="_Register..." Click="ButtonAddPatient_Click" />
-                <MenuItem x:Name="menuItemMakeAppointment" Header="_Appointment..." Click="ButtonMakeAppointment_Click" />
-                <MenuItem x:Name="menuItemDisplayPatientList" Header="_PatientList..." Click="ButtonDisplayPatientList_Click" />
+            <MenuItem Header="_Patient">
+                <MenuItem x:Name="menuItemRegisterPatient" Header="_Add..." Click="ButtonAddPatient_Click" />
+                <MenuItem x:Name="menuItemDisplayPatientList" Header="_Manage..." Click="ButtonDisplayPatientList_Click" />
+            </MenuItem>
+            <MenuItem Header="_Appointment">
+                <MenuItem x:Name="menuItemMakeAppointment" Header="_Add..." Click="ButtonMakeAppointment_Click" />
             </MenuItem>
         </Menu>
         <Grid x:Name="gridMainBody">
@@ -28,6 +30,10 @@
             <GroupBox Grid.Column="0" Margin="5" Header="Filters">
                 <Grid>
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="26" />
+                        <RowDefinition Height="26" />
+                        <RowDefinition Height="26" />
+                        <RowDefinition Height="26" />
                         <RowDefinition Height="26" />
                         <RowDefinition Height="26" />
                         <RowDefinition Height="26" />
@@ -66,7 +72,12 @@
                             </Style>
                         </DatePicker.Resources>
                     </DatePicker>
-                    <Button x:Name="buttonApplyFilters" Content="Apply" Grid.Row="6" Width="80"  VerticalAlignment="Center" HorizontalAlignment="Right" Click="ButtonApplyFilters_Click" />
+                    <CheckBox Grid.Row="6" Content="Type of animal:" VerticalAlignment="Center" HorizontalAlignment="Left" IsChecked="{Binding Filters.IsPetTypeSelected}" />
+                    <ComboBox Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Stretch" ItemsSource="{Binding Filters.PetTypes}" SelectedItem="{Binding Filters.PetType}" IsEnabled="{Binding Filters.IsPetTypeSelected}" />
+                    <CheckBox Grid.Row="8" Content="Type of service:" VerticalAlignment="Center" HorizontalAlignment="Left" IsChecked="{Binding Filters.IsServiceTypeSelected}" />
+                    <ComboBox Grid.Row="9" VerticalAlignment="Center" HorizontalAlignment="Stretch" ItemsSource="{Binding Filters.ServiceTypes}" SelectedItem="{Binding Filters.ServiceType}" IsEnabled="{Binding Filters.IsServiceTypeSelected}" />
+                    <Button x:Name="buttonApplyFilters" Content="Apply" Grid.Row="10" Width="80"  VerticalAlignment="Center" HorizontalAlignment="Right" Click="ButtonApplyFilters_Click" />
+                    <Button x:Name="buttonResetFilters" Content="Reset" Grid.Row="10" Width="80"  VerticalAlignment="Center" HorizontalAlignment="Left" Click="ButtonResetFilters_Click" />
                 </Grid>
             </GroupBox>
             <GroupBox Grid.Column="1" Margin="5" Header="Appointments">

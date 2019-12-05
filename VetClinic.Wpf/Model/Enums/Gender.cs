@@ -1,4 +1,4 @@
-﻿namespace VetClinic.Wpf.Model.Enum
+﻿namespace VetClinic.Wpf.Model.Enums
 {
     public enum Gender
     {

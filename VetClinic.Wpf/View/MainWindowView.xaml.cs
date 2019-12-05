@@ -179,6 +179,19 @@ namespace VetClinic.Wpf.View
             }
         }
 
+        private void ButtonResetFilters_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                ViewModel.ResetFilters();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Unexpected error occurred during reseting filters");
+            }
+
+        }
+
         #endregion Event Handlers
     }
 }

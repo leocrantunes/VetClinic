@@ -6,6 +6,7 @@ using System.Windows.Data;
 using System.Xml.Serialization;
 using VetClinic.Wpf.Core;
 using VetClinic.Wpf.Model;
+using VetClinic.Wpf.Model.Enums;
 using VetClinic.Wpf.Model.Filters;
 
 namespace VetClinic.Wpf.ViewModel
@@ -21,9 +22,6 @@ namespace VetClinic.Wpf.ViewModel
 
             // load previous data
             ReadXmlData();
-
-            // set collection view source for filtering
-            AppointmentsView = CollectionViewSource.GetDefaultView(VetClinic.Schedule.Appointments);
         }
 
         private Clinic _vetClinic;
@@ -51,7 +49,16 @@ namespace VetClinic.Wpf.ViewModel
         /// <summary>
         /// 
         /// </summary>
-        public ICollectionView AppointmentsView { get; set; }
+        private ICollectionView _appointmentsView;
+        public ICollectionView AppointmentsView
+        {
+            get { return _appointmentsView; }
+            set
+            {
+                _appointmentsView = value;
+                OnPropertyChanged(nameof(AppointmentsView));
+            }
+        }
 
         /// <summary>
         /// Save data to xml file
@@ -76,6 +83,12 @@ namespace VetClinic.Wpf.ViewModel
             var reader = new StreamReader(_xmlFileName);
             VetClinic = (Clinic)serializer.Deserialize(reader);
             reader.Close();
+
+            // set all appointments to visible state
+            SetAllAppointmentsToVisible();
+
+            // set collection view source for filtering
+            AppointmentsView = CollectionViewSource.GetDefaultView(VetClinic.Schedule.Appointments);
         }
 
         /// <summary>
@@ -84,6 +97,7 @@ namespace VetClinic.Wpf.ViewModel
         public void ClearAllData()
         {
             VetClinic?.Clear();
+            Filters.Reset();
         }
 
         /// <summary>
@@ -178,6 +192,11 @@ namespace VetClinic.Wpf.ViewModel
             VetClinic.Schedule.Appointments[index] = newAppointment;
         }
 
+        public void ResetFilters()
+        {
+            Filters.Reset();
+        }
+
         /// <summary>
         /// Remove appointment
         /// </summary>
@@ -202,7 +221,9 @@ namespace VetClinic.Wpf.ViewModel
                 appointment => 
                     ContainsPatientName(((Appointment)appointment).Patient.Name) &&
                     AfterDateFrom(((Appointment)appointment).Date) &&
-                    BeforeDateTo(((Appointment)appointment).Date);
+                    BeforeDateTo(((Appointment)appointment).Date) &&
+                    EqualsPetType(((Appointment)appointment).Patient.Type) &&
+                    EqualsServiceType(((Appointment)appointment).ServiceType);
         }
 
         /// <summary>
@@ -213,7 +234,9 @@ namespace VetClinic.Wpf.ViewModel
             var filtered = from appointment in VetClinic.Schedule.Appointments.ToList()
                            where ContainsPatientName(appointment.Patient.Name) &&
                                  AfterDateFrom(appointment.Date) &&
-                                 BeforeDateTo(appointment.Date)
+                                 BeforeDateTo(appointment.Date) &&
+                                 EqualsPetType(appointment.Patient.Type) &&
+                                 EqualsServiceType(appointment.ServiceType)
                            select appointment;
 
             foreach (var a in VetClinic.Schedule.Appointments)
@@ -235,6 +258,24 @@ namespace VetClinic.Wpf.ViewModel
         private bool BeforeDateTo(DateTime date)
         {
             return !Filters.IsDateToSelected || Filters.IsDateToSelected && date <= Filters.DateTo;
+        }
+
+        private bool EqualsPetType(PetType? type)
+        {
+            return !Filters.IsPetTypeSelected || Filters.IsPetTypeSelected && type == Filters.PetType;
+        }
+
+        private bool EqualsServiceType(ServiceType? type)
+        {
+            return !Filters.IsServiceTypeSelected || Filters.IsServiceTypeSelected && type == Filters.ServiceType;
+        }
+
+        public void SetAllAppointmentsToVisible()
+        {
+            foreach (var appointment in VetClinic.Schedule.Appointments)
+            {
+                appointment.IsVisible = true;
+            }
         }
     }
 }

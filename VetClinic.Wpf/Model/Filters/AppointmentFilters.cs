@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VetClinic.Wpf.Core;
+using VetClinic.Wpf.Model.Enums;
 
 namespace VetClinic.Wpf.Model.Filters
 {
@@ -11,12 +13,10 @@ namespace VetClinic.Wpf.Model.Filters
     {
         public AppointmentFilters()
         {
-            IsNameSelected = true;
-            Name = string.Empty;
-            IsDateFromSelected = true;
-            DateFrom = DateTime.Today;
-            IsDateToSelected = true;
-            DateTo = DateTime.Today.AddDays(15);
+            Reset();
+
+            PetTypes = new ObservableCollection<PetType>(Enum.GetValues(typeof(PetType)).Cast<PetType>());
+            ServiceTypes = new ObservableCollection<ServiceType>(Enum.GetValues(typeof(ServiceType)).Cast<ServiceType>());
         }
 
         private bool _isNameSelected;
@@ -85,14 +85,66 @@ namespace VetClinic.Wpf.Model.Filters
             }
         }
 
+        private bool _isPetTypeSelected;
+        public bool IsPetTypeSelected
+        {
+            get { return _isPetTypeSelected; }
+            set
+            {
+                _isPetTypeSelected = value;
+                OnPropertyChanged(nameof(IsPetTypeSelected));
+            }
+        }
+
+        private PetType? _type;
+        public PetType? PetType
+        {
+            get { return _type; }
+            set
+            {
+                _type = value;
+                OnPropertyChanged(nameof(PetType));
+            }
+        }
+
+        private bool _isServiceTypeSelected;
+        public bool IsServiceTypeSelected
+        {
+            get { return _isServiceTypeSelected; }
+            set
+            {
+                _isServiceTypeSelected = value;
+                OnPropertyChanged(nameof(IsServiceTypeSelected));
+            }
+        }
+
+        private ServiceType? _serviceType;
+        public ServiceType? ServiceType
+        {
+            get { return _serviceType; }
+            set
+            {
+                _serviceType = value;
+                OnPropertyChanged(nameof(ServiceType));
+            }
+        }
+
+        public ObservableCollection<PetType> PetTypes { get; set; }
+
+        public ObservableCollection<ServiceType> ServiceTypes { get; set; }
+
         public void Reset()
         {
-            IsNameSelected = true;
+            IsNameSelected = false;
             Name = string.Empty;
-            IsDateFromSelected = true;
-            DateFrom = DateTime.Today;
-            IsDateToSelected = true;
-            DateTo = DateTime.Today.AddDays(15);
+            IsDateFromSelected = false;
+            DateFrom = DateTime.Today.AddDays(-15);
+            IsDateToSelected = false;
+            DateTo = DateTime.Today.AddDays(30);
+            IsPetTypeSelected = false;
+            PetType = null;
+            IsServiceTypeSelected = false;
+            ServiceType = null;
         }
     }
 }
