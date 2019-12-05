@@ -17,6 +17,7 @@ namespace VetClinic.Wpf.Model
             Time = TimeSpan.FromHours(12);
             Place = null;
             ServiceType = null;
+            IsVisible = true;
         }
 
         public Appointment(Appointment appointment, Pet patient)
@@ -27,6 +28,7 @@ namespace VetClinic.Wpf.Model
             Time = appointment.Time;
             Place = appointment.Place;
             ServiceType = appointment.ServiceType;
+            IsVisible = true;
         }
 
         private string _id;
@@ -100,6 +102,17 @@ namespace VetClinic.Wpf.Model
             {
                 _serviceType = value;
                 OnPropertyChanged(nameof(ServiceType));
+            }
+        }
+
+        private bool _isVisible;
+        public bool IsVisible
+        {
+            get { return _isVisible; }
+            set
+            {
+                _isVisible = value;
+                OnPropertyChanged(nameof(IsVisible));
             }
         }
     }

@@ -193,6 +193,9 @@ namespace VetClinic.Wpf.ViewModel
             VetClinic.Schedule.Appointments.Remove(appointment);
         }
         
+        /// <summary>
+        /// Recommended way
+        /// </summary>
         public void FilterAppointments()
         {
             AppointmentsView.Filter = 
@@ -202,6 +205,23 @@ namespace VetClinic.Wpf.ViewModel
                     BeforeDateTo(((Appointment)appointment).Date);
         }
 
+        /// <summary>
+        /// Another way: using LINQ and IsVisibleProperty
+        /// </summary>
+        public void FilterAppointmentsV2()
+        {
+            var filtered = from appointment in VetClinic.Schedule.Appointments.ToList()
+                           where ContainsPatientName(appointment.Patient.Name) &&
+                                 AfterDateFrom(appointment.Date) &&
+                                 BeforeDateTo(appointment.Date)
+                           select appointment;
+
+            foreach (var a in VetClinic.Schedule.Appointments)
+            {
+                a.IsVisible = filtered.Contains(a);
+            }
+        }
+
         private bool ContainsPatientName(string name)
         {
             return !Filters.IsNameSelected || Filters.IsNameSelected && name.ToLower().Contains(Filters.Name.ToLower());
@@ -209,12 +229,12 @@ namespace VetClinic.Wpf.ViewModel
 
         private bool AfterDateFrom(DateTime date)
         {
-            return !Filters.IsDateFromSelected || Filters.IsNameSelected && date >= Filters.DateFrom;
+            return !Filters.IsDateFromSelected || Filters.IsDateFromSelected && date >= Filters.DateFrom;
         }
 
         private bool BeforeDateTo(DateTime date)
         {
-            return !Filters.IsDateToSelected || Filters.IsNameSelected && date >= Filters.DateTo;
+            return !Filters.IsDateToSelected || Filters.IsDateToSelected && date <= Filters.DateTo;
         }
     }
 }
