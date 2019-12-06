@@ -96,7 +96,7 @@ namespace VetClinic.Wpf.ViewModel
             {
                 Message = "Place is mandatory";
             }
-            else if (Schedule.Appointments.Any(s => s.Date == Appointment.Date && s.Time == Appointment.Time))
+            else if (Schedule.Appointments.Any(s => s.Id != Appointment.Id && s.Date == Appointment.Date && s.Time == Appointment.Time))
             {
                 Message = "There is another appointment at the same day and time";
             }

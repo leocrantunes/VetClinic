@@ -118,10 +118,10 @@ namespace VetClinic.Wpf.ViewModel
                 throw new Exception("Patient not found");
             }
 
+            UpdateAssociatedAppointments(newPatient);
+
             var index = VetClinic.Patients.IndexOf(patientToEdit);
             VetClinic.Patients[index] = newPatient;
-
-            UpdateAssociatedAppointments(newPatient);
         }
 
         /// <summary>
@@ -173,6 +173,8 @@ namespace VetClinic.Wpf.ViewModel
         {
             appointment.Id = Guid.NewGuid().ToString("n");
             VetClinic.Schedule.Appointments.Add(appointment);
+
+            FilterAppointments();
         }
 
         /// <summary>
@@ -218,10 +220,10 @@ namespace VetClinic.Wpf.ViewModel
         public void FilterAppointments()
         {
             var filtered = from appointment in VetClinic.Schedule.Appointments.ToList()
-                           where ContainsPatientName(appointment.Patient.Name) &&
+                           where ContainsPatientName(appointment.Patient?.Name) &&
                                  AfterDateFrom(appointment.Date) &&
                                  BeforeDateTo(appointment.Date) &&
-                                 EqualsPetType(appointment.Patient.Type) &&
+                                 EqualsPetType(appointment.Patient?.Type) &&
                                  EqualsServiceType(appointment.ServiceType)
                            select appointment;
 

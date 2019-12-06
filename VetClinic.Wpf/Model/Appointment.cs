@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
-using System.Linq;
 using System.Xml.Serialization;
 using VetClinic.Wpf.Core;
 using VetClinic.Wpf.Model.Enums;
@@ -28,7 +26,7 @@ namespace VetClinic.Wpf.Model
             Time = appointment.Time;
             Place = appointment.Place;
             ServiceType = appointment.ServiceType;
-            IsVisible = true;
+            IsVisible = appointment.IsVisible;
         }
 
         private string _id;
