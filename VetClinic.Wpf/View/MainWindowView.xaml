@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:VetClinic.Wpf.View"
         xmlns:Converters="clr-namespace:VetClinic.Wpf.ViewModel.Converters"
         mc:Ignorable="d"
-        Title="VetClinic" Height="450" Width="800">
+        Title="VetClinic" Height="450" Width="900">
     <Window.Resources>
         <Converters:StringToDateTimeConverter x:Key="StringToDateTimeConverter"/>
     </Window.Resources>
@@ -88,11 +88,13 @@
                 <DataGrid x:Name="lstAppointments" IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding  AppointmentsView}" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Stretch">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Patient" Binding="{Binding Patient.Name}" />
+                        <DataGridTextColumn Header="Type" Binding="{Binding Patient.Type}" />
                         <DataGridTextColumn Header="Breed" Binding="{Binding Patient.Breed}" />
                         <DataGridTextColumn Header="Owner" Binding="{Binding Patient.Owner.Name}" />
                         <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat='yyyy-MM-dd'}" />
                         <DataGridTextColumn Header="Time" Binding="{Binding Time}" />
-                        <DataGridTextColumn Header="ServiceType" Binding="{Binding ServiceType}" />
+                        <DataGridTextColumn Header="Service" Binding="{Binding ServiceType}" />
+                        <DataGridTextColumn Header="Place" Binding="{Binding Place}" />
                         <DataGridTemplateColumn MinWidth="70">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>

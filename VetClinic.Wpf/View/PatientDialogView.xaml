@@ -69,11 +69,11 @@
         <Label Grid.Row="6" Grid.Column="2" Content="Gender*:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
         <ComboBox Grid.Row="6" Grid.Column="3" HorizontalAlignment="Center" Height="23" VerticalAlignment="Center" Width="200" ItemsSource="{Binding Genders}" SelectedItem="{Binding Patient.Gender}"/>
 
-        <Label Grid.Row="7" Grid.Column="2" Content="Weight:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
+        <Label Grid.Row="7" Grid.Column="2" Content="Weight(kg):" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
         <TextBox Grid.Row="7" Grid.Column="3" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="200" Text="{Binding Patient.Weight, Converter={StaticResource StringToDecimalConverter}}"/>
-        <Label Grid.Row="8" Grid.Column="2" Content="Length:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
+        <Label Grid.Row="8" Grid.Column="2" Content="Length(m):" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
         <TextBox Grid.Row="8" Grid.Column="3" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="200" Text="{Binding Patient.Length, Converter={StaticResource StringToDecimalConverter}}"/>
-        <Label Grid.Row="9" Grid.Column="2" Content="Height:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
+        <Label Grid.Row="9" Grid.Column="2" Content="Height(m):" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30" />
         <TextBox Grid.Row="9" Grid.Column="3" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="200" Text="{Binding Patient.Height, Converter={StaticResource StringToDecimalConverter}}"/>
 
         <Button Grid.Row="11" Grid.Column="3" x:Name="btnOk" Content="OK" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="23" Click="BtnOk_Click"/>
