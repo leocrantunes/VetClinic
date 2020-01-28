@@ -12,12 +12,12 @@ namespace VetClinic.Test
     [TestFixture]
     public class MainWindowViewModelTest
     {
-        MainWindowViewModel fixture;
+        private MainWindowViewModel fixture;
 
-        Pet patient;
-        Appointment appointment;
-
-        [SetUp]
+        private Pet patient;
+        private Appointment appointment;
+        
+        [OneTimeSetUp]
         public void Init()
         {
             fixture = new MainWindowViewModel();
@@ -30,12 +30,9 @@ namespace VetClinic.Test
             appointment = new Appointment();
             appointment.Id = "1";
             appointment.Place = Wpf.Model.Enums.AppointmentPlace.Clinic;
-
-
         }
 
-        [TestFixtureSetUp]
-
+        [SetUp]
         public void TestFixtureInit()
         {
             fixture.VetClinic.Patients.Clear();
@@ -50,15 +47,15 @@ namespace VetClinic.Test
             Assert.AreEqual(1, fixture.VetClinic.Patients.Count);
             Assert.AreEqual(patient.Name, fixture.VetClinic.Patients.FirstOrDefault()?.Name);
         }
+
         [Test]
         public void EditPatientTest()
         {
-
             fixture.AddPatient(patient);
             patient.Age = 1;
             fixture.EditPatient(patient);
+
             Assert.AreEqual(patient.Age, fixture.VetClinic.Patients.FirstOrDefault()?.Age);
-            
         }
 
         [Test]
@@ -66,6 +63,7 @@ namespace VetClinic.Test
         {
             fixture.AddPatient(patient);
             fixture.RemovePatient(patient);
+
             Assert.IsEmpty(fixture.VetClinic.Patients);
         }
 
@@ -78,16 +76,15 @@ namespace VetClinic.Test
             Assert.AreEqual(1, fixture.VetClinic.Schedule.Appointments.Count);
             Assert.AreEqual(appointment.Place, fixture.VetClinic.Schedule.Appointments.FirstOrDefault()?.Place);
         }
+
         [Test]
         public void EditAppointmentTest()
         {
             fixture.AddAppointment(appointment);
             appointment.Place = Wpf.Model.Enums.AppointmentPlace.ClientHouse;
             fixture.EditAppointment(appointment);
+
             Assert.AreEqual(appointment.Place, fixture.VetClinic.Schedule.Appointments.FirstOrDefault()?.Place);
-
         }
-
-
     }
 }
