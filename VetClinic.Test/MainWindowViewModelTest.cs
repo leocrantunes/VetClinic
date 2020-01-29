@@ -34,7 +34,6 @@ namespace VetClinic.Test
             patient.Owner.LastName = "Smith";
 
             appointment = new Appointment();
-            appointment.Id = "1";
             appointment.Place = Wpf.Model.Enums.AppointmentPlace.Clinic;
         }
 
@@ -42,6 +41,8 @@ namespace VetClinic.Test
         public void TestFixtureInit()
         {
             fixture.VetClinic.Patients.Clear();
+            fixture.VetClinic.Schedule.Appointments.Clear();
+            fixture.ClearAllData();
             File.Delete(Path.Combine(backupDir, fName));
         }
 
@@ -95,6 +96,43 @@ namespace VetClinic.Test
         }
 
         [Test]
+        public void RemoveAppointmentTest()
+        {
+            fixture.AddAppointment(appointment);
+            fixture.RemoveAppointment(appointment);
+
+            Assert.IsEmpty(fixture.VetClinic.Schedule.Appointments);
+        }
+
+        [Test]
+        public void NameFliterTest()
+        {
+            fixture.AddPatient(patient);
+
+            fixture.Filters.Name = "Flipper";
+            fixture.Filters.IsNameSelected = true;
+
+            fixture.FilterAppointments();
+
+            Assert.IsTrue(appointment.IsVisible);
+        }
+
+
+        [Test]
+        public void SaveXmlDataTest()
+        {
+            fixture.AddPatient(patient);
+            fixture.AddAppointment(appointment);
+
+            fixture.SaveXmlData();
+            fixture.ClearAllData();
+            fixture.ReadXmlData();
+
+            Assert.AreEqual(1, fixture.VetClinic.Patients.Count);
+            Assert.AreEqual(1, fixture.VetClinic.Schedule.Appointments.Count);
+        }
+
+        [Test]
         public void ReadXmlDataTest()
         {
             File.Copy(Path.Combine(sourceDir, fName), Path.Combine(backupDir, fName), true);
@@ -107,5 +145,17 @@ namespace VetClinic.Test
             Assert.AreEqual("a4f594684a8d442b951de8379719ba67", fixture.VetClinic.Patients.FirstOrDefault()?.Id);
             Assert.AreEqual("891dc5b2580243ce9d16bd97aa7fd4a7", fixture.VetClinic.Schedule.Appointments.FirstOrDefault()?.Id);
         }
+
+        [Test]
+        public void ClearDataTest()
+        {
+            fixture.AddPatient(patient);
+            fixture.AddAppointment(appointment);
+            fixture.VetClinic.Clear();
+
+            Assert.IsEmpty(fixture.VetClinic.Patients);
+            Assert.IsEmpty(fixture.VetClinic.Schedule.Appointments);
+        }
+
     }
 }
