@@ -1,10 +1,6 @@
 ﻿using NUnit.Framework;
-using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VetClinic.Wpf.Model;
 using VetClinic.Wpf.ViewModel;
 
@@ -18,14 +14,14 @@ namespace VetClinic.Test
         private Pet patient;
         private Appointment appointment;
 
-        private string sourceDir = "Files";
-        private string backupDir = @"";
-        private string fName = "VetClinic.xml";
+        private readonly string sourceDir = "Files";
+        private readonly string mainDir = @"";
+        private readonly string fileName = "VetClinic.xml";
 
         [OneTimeSetUp]
         public void Init()
         {
-            File.Delete(Path.Combine(backupDir, fName));
+            File.Delete(Path.Combine(mainDir, fileName));
             fixture = new MainWindowViewModel();
 
             patient = new Pet();
@@ -40,10 +36,8 @@ namespace VetClinic.Test
         [SetUp]
         public void TestFixtureInit()
         {
-            fixture.VetClinic.Patients.Clear();
-            fixture.VetClinic.Schedule.Appointments.Clear();
             fixture.ClearAllData();
-            File.Delete(Path.Combine(backupDir, fName));
+            File.Delete(Path.Combine(mainDir, fileName));
         }
 
         [Test]
@@ -135,15 +129,18 @@ namespace VetClinic.Test
         [Test]
         public void ReadXmlDataTest()
         {
-            File.Copy(Path.Combine(sourceDir, fName), Path.Combine(backupDir, fName), true);
+            var patientId = "a4f594684a8d442b951de8379719ba67";
+            var appointmentId = "891dc5b2580243ce9d16bd97aa7fd4a7";
+            
+            File.Copy(Path.Combine(sourceDir, fileName), Path.Combine(mainDir, fileName), true);
 
             fixture.ReadXmlData();
 
             Assert.AreEqual(3, fixture.VetClinic.Patients.Count);
             Assert.AreEqual(4, fixture.VetClinic.Schedule.Appointments.Count);
 
-            Assert.AreEqual("a4f594684a8d442b951de8379719ba67", fixture.VetClinic.Patients.FirstOrDefault()?.Id);
-            Assert.AreEqual("891dc5b2580243ce9d16bd97aa7fd4a7", fixture.VetClinic.Schedule.Appointments.FirstOrDefault()?.Id);
+            Assert.AreEqual(patientId, fixture.VetClinic.Patients.FirstOrDefault()?.Id);
+            Assert.AreEqual(appointmentId, fixture.VetClinic.Schedule.Appointments.FirstOrDefault()?.Id);
         }
 
         [Test]
@@ -156,6 +153,5 @@ namespace VetClinic.Test
             Assert.IsEmpty(fixture.VetClinic.Patients);
             Assert.IsEmpty(fixture.VetClinic.Schedule.Appointments);
         }
-
     }
 }
