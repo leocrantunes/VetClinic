@@ -55,10 +55,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\PetHierarchy\Cat.cs" />
     <Compile Include="Model\Clinic.cs" />
     <Compile Include="Model\Enums\ServiceType.cs" />
     <Compile Include="Model\Enums\AppointmentPlace.cs" />
     <Compile Include="Model\Filters\AppointmentFilters.cs" />
+    <Compile Include="Model\PetHierarchy\Dog.cs" />
+    <Compile Include="Model\PetHierarchy\PetSurgery.cs" />
+    <Compile Include="Model\PetHierarchy\PetTherapy.cs" />
+    <Compile Include="Model\PetHierarchy\PetVaccination.cs" />
+    <Compile Include="Model\PetHierarchy\ServiceDecorator.cs" />
     <Compile Include="Model\Schedule.cs" />
     <Compile Include="Model\Appointment.cs" />
     <Compile Include="ViewModel\Converters\StringToDecimalConverter.cs" />
@@ -96,7 +102,7 @@
     <Compile Include="Core\BaseNotifyPropertyChanged.cs" />
     <Compile Include="Model\Enums\Gender.cs" />
     <Compile Include="Model\Enums\PetType.cs" />
-    <Compile Include="Model\Pet.cs" />
+    <Compile Include="Model\PetHierarchy\Pet.cs" />
     <Compile Include="Model\Person.cs" />
     <Compile Include="View\MainWindowView.xaml.cs">
       <DependentUpon>MainWindowView.xaml</DependentUpon>

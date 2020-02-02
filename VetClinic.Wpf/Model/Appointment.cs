@@ -10,11 +10,11 @@ namespace VetClinic.Wpf.Model
         public Appointment()
         {
             Id = string.Empty;
-            Patient = new Pet();
+            //Need to fix it
+            //Patient = new Pet();
             Date = null;
             Time = TimeSpan.FromHours(12);
             Place = null;
-            ServiceType = null;
             IsVisible = true;
         }
 
@@ -25,7 +25,6 @@ namespace VetClinic.Wpf.Model
             Date = appointment.Date;
             Time = appointment.Time;
             Place = appointment.Place;
-            ServiceType = appointment.ServiceType;
             IsVisible = appointment.IsVisible;
         }
 
@@ -89,17 +88,6 @@ namespace VetClinic.Wpf.Model
             {
                 _appointmentPlace = value;
                 OnPropertyChanged(nameof(Place));
-            }
-        }
-
-        private ServiceType? _serviceType;
-        public ServiceType? ServiceType
-        {
-            get { return _serviceType; }
-            set
-            {
-                _serviceType = value;
-                OnPropertyChanged(nameof(ServiceType));
             }
         }
 

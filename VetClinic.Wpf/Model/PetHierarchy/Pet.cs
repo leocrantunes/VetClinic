@@ -3,7 +3,7 @@ using VetClinic.Wpf.Model.Enums;
 
 namespace VetClinic.Wpf.Model
 {
-    public class Pet : BaseNotifyPropertyChanged
+    public abstract class Pet : BaseNotifyPropertyChanged
     {
         public Pet()
         {
@@ -15,7 +15,6 @@ namespace VetClinic.Wpf.Model
             Length = null;
             Height = null;
             Type = null;
-            Gender = null;
 
             Owner = new Person();
         }
@@ -30,7 +29,6 @@ namespace VetClinic.Wpf.Model
             Length = pet.Length;
             Height = pet.Height;
             Type = pet.Type;
-            Gender = pet.Gender;
 
             Owner = pet.Owner;
         }
@@ -123,17 +121,6 @@ namespace VetClinic.Wpf.Model
             }
         }
 
-        private Gender? _gender;
-        public Gender? Gender
-        {
-            get { return _gender; }
-            set
-            {
-                _gender = value;
-                OnPropertyChanged(nameof(Gender));
-            }
-        }
-
         private Person _owner;
         public Person Owner
         {
@@ -153,5 +140,11 @@ namespace VetClinic.Wpf.Model
         }
 
         #endregion Derived Properties
+
+
+        // Return the cost of the treatment
+        public abstract decimal GetTreatmentCost();
+
+
     }
 }
