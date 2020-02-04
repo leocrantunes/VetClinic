@@ -8,6 +8,10 @@ namespace VetClinic.Wpf.Model.PetHierarchy
 {
     class Dog : Pet
     {
+        public Dog(Pet pet) : base(pet)
+        {
+        }
+
         //Return basic tests cost
         public override decimal GetTreatmentCost()
         {

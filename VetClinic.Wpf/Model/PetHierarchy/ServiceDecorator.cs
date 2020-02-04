@@ -10,5 +10,14 @@ namespace VetClinic.Wpf.Model.PetHierarchy
     abstract class ServiceDecorator : Pet
     {
         private protected Pet _pet;
+
+        public ServiceDecorator(Pet pet) : base(pet)
+        {
+        }
+
+        public override decimal GetTreatmentCost()
+        {
+            return _pet.GetTreatmentCost();
+        }
     }
 }

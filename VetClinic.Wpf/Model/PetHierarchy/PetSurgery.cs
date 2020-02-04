@@ -8,6 +8,10 @@ namespace VetClinic.Wpf.Model.PetHierarchy
 {
     class PetSurgery : ServiceDecorator
     {
+        public PetSurgery(Pet pet) : base(pet)
+        {
+        }
+
         public override decimal GetTreatmentCost()
         {
             return _pet.GetTreatmentCost() + 60;
